@@ -35,8 +35,20 @@ const [error, setError] = useState(null);
 useEffect(() => {
   const fetchProperties = async () => {
     try {
-      const res = await axios.get("${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/properties");
-      setProperties(res.data.properties);
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/properties`);
+      console.log("✅ Response from backend:", res.data); // Check structure
+
+      // If res.data itself is the array of properties
+      if (Array.isArray(res.data)) {
+        setProperties(res.data);
+      } 
+      // If backend returns { properties: [...] }
+      else if (Array.isArray(res.data.properties)) {
+        setProperties(res.data.properties);
+      } 
+      else {
+        throw new Error("Invalid data format from backend");
+      }
     } catch (error) {
       console.error("❌ Error fetching properties:", error);
       setError("Cannot retrieve properties at this time. Please try again later.");
@@ -47,6 +59,7 @@ useEffect(() => {
 
   fetchProperties();
 }, []);
+
 
   console.log("📦 Properties state:", properties);
 
