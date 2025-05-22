@@ -95,7 +95,7 @@ const [tempPropertyType, setTempPropertyType] = useState("");
     const fetchProperties = async () => {
  
       try {
-  const res = await axios.get("${process.env.REACT_APP_BACKEND_URL}api/auth/estateAgency/properties");
+  const res = await axios.get("${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/properties");
   setProperties(res.data.properties);
   setError(""); // clear any previous error
 } catch (error) {
@@ -123,7 +123,7 @@ const [tempPropertyType, setTempPropertyType] = useState("");
       }
 
       const response = await axios.post(
-        "${process.env.REACT_APP_BACKEND_URL}api/auth/client/logout",
+        "${process.env.REACT_APP_BACKEND_URL}/api/auth/client/logout",
         { clientId },
         {
           headers: {
@@ -175,7 +175,7 @@ const propertyTypes = ["Apartment", "Villa", "Land", "Garage"];
 
   //   try {
   //     const response = await axios.get(
-  //       `${process.env.REACT_APP_BACKEND_URL}api/auth/client/notifications/${clientId}`,
+  //       `${process.env.REACT_APP_BACKEND_URL}/api/auth/client/notifications/${clientId}`,
   //       { headers: { Authorization: `Bearer ${token}` } }
   //     );
 
@@ -189,7 +189,7 @@ const propertyTypes = ["Apartment", "Villa", "Land", "Garage"];
 
   //       // Optionally mark it seen in backend
   //       await axios.put(
-  //         `${process.env.REACT_APP_BACKEND_URL}api/auth/client/notifications/${clientId}/mark-seen`,
+  //         `${process.env.REACT_APP_BACKEND_URL}/api/auth/client/notifications/${clientId}/mark-seen`,
   //         { ids: [latest._id] },
   //         { headers: { Authorization: `Bearer ${token}` } }
   //       );
@@ -221,7 +221,7 @@ const propertyTypes = ["Apartment", "Villa", "Land", "Garage"];
 
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_BACKEND_URL}api/auth/client/notifications/${clientId}`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/auth/client/notifications/${clientId}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
@@ -238,7 +238,7 @@ const propertyTypes = ["Apartment", "Villa", "Land", "Garage"];
 
       // Optionally mark it seen in backend
       await axios.put(
-        `${process.env.REACT_APP_BACKEND_URL}api/auth/client/notifications/${clientId}/mark-seen`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/auth/client/notifications/${clientId}/mark-seen`,
         { ids: [latest._id] },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -411,7 +411,7 @@ const handleRedirectToNotifications = () => {
                   {property.images.map((img, i) => (
                     <img
                       key={img.fileId || i}
-                      src={`${process.env.REACT_APP_BACKEND_URL}api/auth/imageProperty/${img.fileId}`}
+                      src={`${process.env.REACT_APP_BACKEND_URL}/api/auth/imageProperty/${img.fileId}`}
                       alt={`Property ${i + 1}`}
                       style={imageStyle}
                     />

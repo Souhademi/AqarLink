@@ -38,7 +38,7 @@ const [clients, setClients] = useState([]);
 
   const handleLogout = async () => {
     try {
-      await axios.post("${process.env.REACT_APP_BACKEND_URL}api/auth/admin/logout");
+      await axios.post("${process.env.REACT_APP_BACKEND_URL}/api/auth/admin/logout");
       localStorage.removeItem("adminLoggedIn");
       navigate("/adminLogin",{ replace: true });
       
@@ -49,7 +49,7 @@ const [clients, setClients] = useState([]);
   
   const handleDownload = async (fileId, filenamePrefix) => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}api/auth/file/download/${fileId}`, {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/file/download/${fileId}`, {
         responseType: 'blob',
       });
   
@@ -148,7 +148,7 @@ const unansweredMessages = messages.filter(
 
   const fetchAgencies = async () => {
     try {
-      const res = await axios.get("${process.env.REACT_APP_BACKEND_URL}api/auth/admin/all-agencies");
+      const res = await axios.get("${process.env.REACT_APP_BACKEND_URL}/api/auth/admin/all-agencies");
       console.log("Fetched agencies:", res.data); // Check full structure
   
       if (res.data.success) {
@@ -166,7 +166,7 @@ const unansweredMessages = messages.filter(
 
   const fetchInvestors = async () => {
     try {
-      const res = await axios.get("${process.env.REACT_APP_BACKEND_URL}api/auth/admin/all-investors");
+      const res = await axios.get("${process.env.REACT_APP_BACKEND_URL}/api/auth/admin/all-investors");
       console.log("Fetched investors:", res.data); // Check full structure
   
       if (res.data.success) {
@@ -183,7 +183,7 @@ const unansweredMessages = messages.filter(
   
 const fetchClients = async () => {
   try {
-    const res = await axios.get("${process.env.REACT_APP_BACKEND_URL}api/auth/admin/all-clients");
+    const res = await axios.get("${process.env.REACT_APP_BACKEND_URL}/api/auth/admin/all-clients");
     if (res.data.success) {
       setClients(res.data.clients);
     }
@@ -195,7 +195,7 @@ const fetchClients = async () => {
 
   const handleRejectAgency = async (id) => {
     try {
-      await axios.patch(`${process.env.REACT_APP_BACKEND_URL}api/auth/agency/reject/${id}`);
+      await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/agency/reject/${id}`);
       alert("Agency rejected. Email sent.");
       fetchAgencies();
     } catch (err) {
@@ -207,7 +207,7 @@ const fetchClients = async () => {
 
   const handleRejectInvestor = async (id) => {
     try {
-      await axios.patch(`${process.env.REACT_APP_BACKEND_URL}api/auth/investor/reject/${id}`);
+      await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/investor/reject/${id}`);
       alert("Investor rejected. Email sent.");
       fetchInvestors();
     } catch (err) {
@@ -218,7 +218,7 @@ const fetchClients = async () => {
 
   const handleVerifyProof = async (userType, id) => {
     try {
-      await axios.post(`${process.env.REACT_APP_BACKEND_URL}api/auth/admin/verify-proof/${userType}/${id}`);
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/admin/verify-proof/${userType}/${id}`);
       alert("Proof verified. Email sent.");
       if (userType === 'agency') {
         fetchAgencies();
@@ -233,7 +233,7 @@ const fetchClients = async () => {
 const handleDeleteAgency = async (id) => {
   if (window.confirm("Are you sure you want to delete this agency?")) {
     try {
-      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}api/auth/admin/delete-agency/${id}`);
+      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/auth/admin/delete-agency/${id}`);
       alert("Agency deleted");
       fetchAgencies();
     } catch (err) {
@@ -246,7 +246,7 @@ const handleDeleteAgency = async (id) => {
 const handleDeleteInvestor = async (id) => {
   if (window.confirm("Are you sure you want to delete this investor?")) {
     try {
-      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}api/auth/admin/delete-investor/${id}`);
+      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/auth/admin/delete-investor/${id}`);
       alert("Investor deleted");
       fetchInvestors();
     } catch (err) {
@@ -259,7 +259,7 @@ const handleDeleteInvestor = async (id) => {
 const handleDeleteClient = async (id) => {
   if (window.confirm("Are you sure you want to delete this client?")) {
     try {
-      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}api/auth/admin/delete-client/${id}`);
+      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/auth/admin/delete-client/${id}`);
       alert("Client deleted");
       fetchClients();
     } catch (err) {
@@ -337,7 +337,7 @@ const handleDeleteClient = async (id) => {
                       <>
                       
                           <img
-                          src={`${process.env.REACT_APP_BACKEND_URL}api/auth/file/view/${agency.proofFileId}`}
+                          src={`${process.env.REACT_APP_BACKEND_URL}/api/auth/file/view/${agency.proofFileId}`}
                           alt="Proof File"
                           style={{ width: "300px", maxHeight: "200px", cursor: "pointer", marginBottom: "10px" }}
                           onClick={() => handleDownload(agency.proofFileId, "agency_proof")}
@@ -402,7 +402,7 @@ const handleDeleteClient = async (id) => {
               {agency.proofFileId && (
                 <>
                   <img
-                    src={`${process.env.REACT_APP_BACKEND_URL}api/auth/file/view/${agency.proofFileId}`}
+                    src={`${process.env.REACT_APP_BACKEND_URL}/api/auth/file/view/${agency.proofFileId}`}
                     alt="Proof File"
                     style={{ width: "300px", maxHeight: "200px", cursor: "pointer", marginBottom: "10px" }}
                     onClick={() => handleDownload(agency.proofFileId, "agency_proof")}
@@ -462,7 +462,7 @@ const handleDeleteClient = async (id) => {
                 {investor.proofFileId && (
                   <>
                     <img
-                      src={`${process.env.REACT_APP_BACKEND_URL}api/auth/file/view/${investor.proofFileId}`}
+                      src={`${process.env.REACT_APP_BACKEND_URL}/api/auth/file/view/${investor.proofFileId}`}
                       alt="Proof File"
                       style={{ width: "300px", maxHeight: "200px", cursor: "pointer", marginBottom: "10px" }}
                       onClick={() => handleDownload(investor.proofFileId, "investor_proof")}
