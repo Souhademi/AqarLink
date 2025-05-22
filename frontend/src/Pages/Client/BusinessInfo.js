@@ -55,8 +55,8 @@ const BusinessInfo = () => {
 
     try {
       const url = editing
-        ? `http://localhost:5000/api/auth/client/business/${editingId}`
-        : "http://localhost:5000/api/auth/client/business";
+        ? `${process.env.REACT_APP_BACKEND_URL}/api/auth/client/business/${editingId}`
+        : "${process.env.REACT_APP_BACKEND_URL}/api/auth/client/business";
       const method = editing ? "put" : "post";
 
       const res = await axios({
@@ -106,7 +106,7 @@ const BusinessInfo = () => {
     if (!clientId) return;
 
     try {
-      const response = await axios.get(`http://localhost:5000/api/auth/client/businesses/${clientId}`);
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/client/businesses/${clientId}`);
       setBusinesses(response.data.businesses);
     } catch (error) {
       console.error("Failed to fetch businesses:", error);
@@ -148,7 +148,7 @@ const BusinessInfo = () => {
     if (!window.confirm("Are you sure you want to delete this business?")) return;
 
     try {
-      const res = await axios.delete(`http://localhost:5000/api/auth/client/business/${businessId}`);
+      const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/auth/client/business/${businessId}`);
       if (res.data.success) {
         alert("Business deleted");
         fetchBusinesses();
@@ -199,7 +199,7 @@ const BusinessInfo = () => {
               {b.businessPlan && (
                 <p>
                   <a
-                    href={`http://localhost:5000/api/auth/client/business-plan/${localStorage.getItem("clientId")}/${b._id}`}
+                    href={`${process.env.REACT_APP_BACKEND_URL}/api/auth/client/business-plan/${localStorage.getItem("clientId")}/${b._id}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ marginLeft: "10px", color: "#007bff" }}
@@ -493,8 +493,8 @@ export default BusinessInfo;
 
 //     try {
 //       const url = editing
-//         ? `http://localhost:5000/api/auth/client/business/${editingId}`
-//         : "http://localhost:5000/api/auth/client/business";
+//         ? `${process.env.REACT_APP_BACKEND_URL}/api/auth/client/business/${editingId}`
+//         : "${process.env.REACT_APP_BACKEND_URL}/api/auth/client/business";
 //       const method = editing ? "put" : "post";
 
 //       const res = await axios({
@@ -544,7 +544,7 @@ export default BusinessInfo;
 //     if (!clientId) return;
 
 //     try {
-//       const response = await axios.get(`http://localhost:5000/api/auth/client/businesses/${clientId}`);
+//       const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/client/businesses/${clientId}`);
 //       setBusinesses(response.data.businesses);
 //     } catch (error) {
 //       console.error("Failed to fetch businesses:", error);
@@ -588,7 +588,7 @@ export default BusinessInfo;
 //     if (!window.confirm("Are you sure you want to delete this business?")) return;
   
 //     try {
-//       const res = await axios.delete(`http://localhost:5000/api/auth/client/business/${businessId}`);
+//       const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/auth/client/business/${businessId}`);
 //       if (res.data.success) {
 //         alert("Business deleted");
 //         fetchBusinesses(); // Refresh the list
@@ -644,7 +644,7 @@ export default BusinessInfo;
 //       {b.businessPlan && (
 //         <p>
 //               <a
-//           href={`http://localhost:5000/api/auth/client/business-plan/${localStorage.getItem("clientId")}/${b._id}`}
+//           href={`${process.env.REACT_APP_BACKEND_URL}/api/auth/client/business-plan/${localStorage.getItem("clientId")}/${b._id}`}
 //           target="_blank"
 //           rel="noopener noreferrer"
 //           style={{ marginLeft: "10px", color: "#007bff" }}

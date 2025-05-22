@@ -54,7 +54,7 @@ const ClientLogin = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/client/login", {
+      const response = await axios.post("${process.env.REACT_APP_BACKEND_URL}api/auth/client/login", {
         email: formData.email.trim(),
         password: formData.password,
       });
@@ -103,7 +103,7 @@ const ClientLogin = () => {
 //   setLoading(true);
 
 //   try {
-//     const response = await axios.post("http://localhost:5000/api/auth/client/login", {
+//     const response = await axios.post("${process.env.REACT_APP_BACKEND_URL}api/auth/client/login", {
 //       email: formData.email.trim(),
 //       password: formData.password,
 //     });

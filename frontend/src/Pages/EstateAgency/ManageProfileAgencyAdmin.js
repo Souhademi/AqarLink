@@ -21,7 +21,7 @@ const ManageProfileAgencyAdmin = () => {
     }
 
     axios
-      .get(`http://localhost:5000/api/auth/estateAgencyManage/${agencyAdminId}`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgencyManage/${agencyAdminId}`)
       .then((res) => {
         setAdminData(res.data);
       })
@@ -39,7 +39,7 @@ const ManageProfileAgencyAdmin = () => {
 
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/auth/estateAgency/update/${agencyAdminId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/update/${agencyAdminId}`,
         { [field]: inputValue }
       );
 

@@ -19,7 +19,7 @@
 
 //   const fetchProperty = async () => {
 //     try {
-//       const response = await axios.get(`http://localhost:5000/api/auth/client/property/${clientId}`, {
+//       const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}api/auth/client/property/${clientId}`, {
 //         headers: { Authorization: `Bearer ${token}` },
 //       });
 //       setProperty(response.data.property || null);
@@ -33,7 +33,7 @@
 //     if (!window.confirm('Are you sure you want to delete your property features?')) return;
 
 //     try {
-//       await axios.delete(`http://localhost:5000/api/auth/client/property`, {
+//       await axios.delete(`${process.env.REACT_APP_BACKEND_URL}api/auth/client/property`, {
 //         headers: { Authorization: `Bearer ${token}` },
 //         data: { clientId },
 //       });
@@ -58,7 +58,7 @@
 
 //     try {
 //       const response = await axios.put(
-//         `http://localhost:5000/api/auth/client/property/${clientId}`,
+//         `${process.env.REACT_APP_BACKEND_URL}api/auth/client/property/${clientId}`,
 //         editingProperty,
 //         {
 //           headers: {
@@ -219,7 +219,7 @@
 //     };
 
 //     try {
-//       const response = await axios.post('http://localhost:5000/api/auth/client/property', property, {
+//       const response = await axios.post('${process.env.REACT_APP_BACKEND_URL}api/auth/client/property', property, {
 //         headers: {
 //           'Content-Type': 'application/json',
 //           Authorization: `Bearer ${token}`,
@@ -413,7 +413,7 @@ const ClientPropertyList = () => {
 
   const fetchProperty = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/auth/client/property/${clientId}`, {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}api/auth/client/property/${clientId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProperty(response.data.property || null);
@@ -428,7 +428,7 @@ const ClientPropertyList = () => {
     if (!window.confirm('Are you sure you want to delete your property features?')) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/auth/client/property`, {
+      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}api/auth/client/property`, {
         headers: { Authorization: `Bearer ${token}` },
         data: { clientId },
       });
@@ -455,7 +455,7 @@ const ClientPropertyList = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/auth/client/property/${clientId}`,
+        `${process.env.REACT_APP_BACKEND_URL}api/auth/client/property/${clientId}`,
         editingProperty,
         {
           headers: {
@@ -683,7 +683,7 @@ const AddClientProperty = ({ onPropertyAdded }) => {
     };
 
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/client/property', property, {
+      const response = await axios.post('${process.env.REACT_APP_BACKEND_URL}api/auth/client/property', property, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,

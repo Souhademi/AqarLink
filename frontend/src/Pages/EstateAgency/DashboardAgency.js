@@ -75,7 +75,7 @@ const DashboardAgency = () => {
 
   const fetchProperties = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/auth/estateAgency/properties/${id}`);
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/properties/${id}`);
       const json = await res.json();
       if (json.success) {
         setProperties(json.properties);
@@ -112,8 +112,8 @@ const DashboardAgency = () => {
 
     try {
       const url = editing
-        ? `http://localhost:5000/api/auth/estateAgency/property/${editing}`
-        : "http://localhost:5000/api/auth/estateAgency/property";
+        ? `${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/property/${editing}`
+        : "${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/property";
       const method = editing ? "PUT" : "POST";
 
       const res = await axios({
@@ -150,7 +150,7 @@ const DashboardAgency = () => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/auth/estateAgency/property/${id}`, {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/property/${id}`, {
         method: "DELETE",
       });
       const json = await res.json();
@@ -192,7 +192,7 @@ const DashboardAgency = () => {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/auth/estateAgency/logout",
+        "${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/logout",
         { agencyAdminId },
         {
           headers: {
@@ -258,7 +258,7 @@ const DashboardAgency = () => {
   >
     <div style={{ width: '300px', height: '200px' }}>
       <img
-        src={`http://localhost:5000/api/auth/imageProperty/${property.images[currentIndex].fileId}`}
+        src={`${process.env.REACT_APP_BACKEND_URL}/api/auth/imageProperty/${property.images[currentIndex].fileId}`}
         alt={`property-${currentIndex}`}
         style={{
           width: '100%',
@@ -282,7 +282,7 @@ const DashboardAgency = () => {
       {property.images.map((img, idx) => (
         <img
           key={img.fileId}
-          src={`http://localhost:5000/api/auth/imageProperty/${img.fileId}`}
+          src={`${process.env.REACT_APP_BACKEND_URL}/api/auth/imageProperty/${img.fileId}`}
           alt={`thumbnail-${idx}`}
           onClick={() => setImageIndices(prev => ({ ...prev, [property._id]: idx }))}
           style={{

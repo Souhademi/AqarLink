@@ -6,7 +6,7 @@ const AdminConversations = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/messages/conversations/all")
+      .get("${process.env.REACT_APP_BACKEND_URL}api/messages/conversations/all")
       .then((res) => setConversations(res.data))
       .catch((err) => console.error(err));
   }, []);

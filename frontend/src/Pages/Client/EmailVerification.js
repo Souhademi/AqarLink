@@ -16,14 +16,14 @@ const EmailVerification = () => {
   //   const verify = async () => {
   //     try {
   //       const { data } = await axios.get(
-  //         `http://localhost:5000/api/auth/client/verify/${token}`
+  //         `${process.env.REACT_APP_BACKEND_URL}api/auth/client/verify/${token}`
   //       );
   //       setMessage(data.message);
   //       setTimeout(() => navigate("/client/login"), 3000);
   //     } catch (clientErr) {
   //       try {
   //         const { data } = await axios.get(
-  //           `http://localhost:5000/api/auth/estateAgency/verify/${token}`
+  //           `${process.env.REACT_APP_BACKEND_URL}api/auth/estateAgency/verify/${token}`
   //         );
   //         setMessage(data.message);
   //         setTimeout(() => navigate("/estateAgency/login"), 3000);
@@ -47,21 +47,21 @@ const EmailVerification = () => {
 //     const verify = async() => {
 //         try {
 //             const { data } = await axios.get(
-//                 `http://localhost:5000/api/auth/client/verify/${token}`
+//                 `${process.env.REACT_APP_BACKEND_URL}api/auth/client/verify/${token}`
 //             );
 //             setMessage(data.message);
 //             setTimeout(() => navigate("/client/login"), 3000);
 //         } catch (clientErr) {
 //             try {
 //                 const { data } = await axios.get(
-//                     `http://localhost:5000/api/auth/estateAgency/verify/${token}`
+//                     `${process.env.REACT_APP_BACKEND_URL}api/auth/estateAgency/verify/${token}`
 //                 );
 //                 setMessage(data.message);
 //                 setTimeout(() => navigate("/estateAgency/login"), 3000);
 //             } catch (adminErr) {
 //                 try {
 //                     const { data } = await axios.get(
-//                         `http://localhost:5000/api/auth/investor/verify/${token}`
+//                         `${process.env.REACT_APP_BACKEND_URL}api/auth/investor/verify/${token}`
 //                     );
 //                     setMessage(data.message);
 //                     setTimeout(() => navigate("/investor/login"), 3000);
@@ -81,11 +81,11 @@ const EmailVerification = () => {
   // const handleResend = async () => {
   //   try {
   //     // You could determine the user type dynamically (e.g., from a dropdown), but here we try both:
-  //     await axios.post("http://localhost:5000/api/auth/client/resend-verification", { email });
+  //     await axios.post("${process.env.REACT_APP_BACKEND_URL}api/auth/client/resend-verification", { email });
   //     setResendMessage("Client verification email resent successfully.");
   //   } catch (clientErr) {
   //     try {
-  //       await axios.post("http://localhost:5000/api/auth/estateAgency/resend-verification", { email });
+  //       await axios.post("${process.env.REACT_APP_BACKEND_URL}api/auth/estateAgency/resend-verification", { email });
   //       setResendMessage("Admin verification email resent successfully.");
   //     } catch (adminErr) {
   //       const errMsg = clientErr.response?.data?.error || adminErr.response?.data?.error;
@@ -107,21 +107,21 @@ useEffect(() => {
     const verify = async() => {
         try {
             const { data } = await axios.get(
-                `http://localhost:5000/api/auth/client/verify/${token}`
+                `${process.env.REACT_APP_BACKEND_URL}api/auth/client/verify/${token}`
             );
             setMessage(data.message);
             setTimeout(() => navigate("/client/login"), 3000);
         } catch (clientErr) {
             try {
                 const { data } = await axios.get(
-                    `http://localhost:5000/api/auth/estateAgency/verify/${token}`
+                    `${process.env.REACT_APP_BACKEND_URL}api/auth/estateAgency/verify/${token}`
                 );
                 setMessage(data.message);
                 setTimeout(() => navigate("/estateAgency/login"), 3000);
             } catch (adminErr) {
                 try {
                     const { data } = await axios.get(
-                        `http://localhost:5000/api/auth/investor/verify/${token}`
+                        `${process.env.REACT_APP_BACKEND_URL}api/auth/investor/verify/${token}`
                     );
                     setMessage(data.message);
                     setTimeout(() => navigate("/investor/login"), 3000);
@@ -149,18 +149,18 @@ useEffect(() => {
 const handleResend = async() => {
     try {
         // You could determine the user type dynamically (e.g., from a dropdown), but here we try both:
-        await axios.post("http://localhost:5000/api/auth/client/resend-verification", { email });
+        await axios.post("${process.env.REACT_APP_BACKEND_URL}api/auth/client/resend-verification", { email });
         setResendMessage("Client verification email resent successfully.");
     } catch (clientErr) {
         try {
-            await axios.post("http://localhost:5000/api/auth/estateAgency/resend-verification", { email });
+            await axios.post("${process.env.REACT_APP_BACKEND_URL}api/auth/estateAgency/resend-verification", { email });
             setResendMessage("Admin verification email resent successfully.");
         } catch (adminErr) {
 
 
             try {
                 // You could determine the user type dynamically (e.g., from a dropdown), but here we try both:
-                await axios.post("http://localhost:5000/api/auth/investor/resend-verification", { email });
+                await axios.post("${process.env.REACT_APP_BACKEND_URL}api/auth/investor/resend-verification", { email });
                 setResendMessage("Investor verification email resent successfully.");
             } catch (investorErr) {
                 const errMsg = clientErr.response ?.data ?.error || investorErr.response ?.data ?.error|| adminErr.response ?.data ?.error;

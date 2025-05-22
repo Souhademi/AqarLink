@@ -23,7 +23,9 @@ const AgencyChatBot = ({ sender = "AgencyAdmin" }) => {
     const senderId = localStorage.getItem("agencyId");
     if (!senderId) return;
 
-    socketRef.current = io("http://localhost:5000");
+    // socketRef.current = io("${process.env.REACT_APP_BACKEND_URL}");
+    socketRef.current = io("${process.env.NEXT_PUBLIC_BACKEND_URL}");
+
     socketRef.current.emit("register_user", {
       userId: senderId,
       role: ROLES.AGENCY_ADMIN,
@@ -40,7 +42,7 @@ const AgencyChatBot = ({ sender = "AgencyAdmin" }) => {
     const senderId = localStorage.getItem("agencyId");
     if (!senderId) return;
 
-    axios.get(`http://localhost:5000/api/messages/${senderId}`).then((res) => {
+    axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/messages/${senderId}`).then((res) => {
       const allMsgs = res.data.flatMap((m) => {
         const arr = [];
         if (m.question) {
@@ -85,7 +87,7 @@ useEffect(() => {
 
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/faq")
+    fetch("${process.env.REACT_APP_BACKEND_URL}api/faq")
       .then((res) => res.json())
       .then((data) => setFaqData(data));
   }, []);

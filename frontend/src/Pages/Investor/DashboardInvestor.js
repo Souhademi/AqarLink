@@ -70,7 +70,7 @@ const [businessError, setBusinessError] = useState(false);
 
     try {
       await axios.post(
-        "http://localhost:5000/api/auth/investor/logout",
+        "${process.env.REACT_APP_BACKEND_URL}/api/auth/investor/logout",
         { investorId },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -99,7 +99,7 @@ const [businessError, setBusinessError] = useState(false);
   //   if (selectedSection === "agencies") {
   //     setLoadingProperties(true);
   //     axios
-  //       .get("http://localhost:5000/api/auth/estateAgency/properties")
+  //       .get("${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/properties")
   //       .then((res) => setProperties(res.data.properties))
   //       .catch((error) => console.error("❌ Error fetching properties:", error))
   //       .finally(() => setLoadingProperties(false));
@@ -111,7 +111,7 @@ useEffect(() => {
     setLoadingProperties(true);
     setPropertyError(false); // reset error state
     axios
-      .get("http://localhost:5000/api/auth/estateAgency/properties")
+      .get("${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/properties")
       .then((res) => setProperties(res.data.properties))
       .catch((error) => {
         console.error("❌ Error fetching properties:", error);
@@ -127,7 +127,7 @@ useEffect(() => {
     setLoadingBusinesses(true);
     setBusinessError(false); // reset error state
     axios
-      .get("http://localhost:5000/api/auth/client/businesses")
+      .get("${process.env.REACT_APP_BACKEND_URL}/api/auth/client/businesses")
       .then((response) => {
         if (response.data.success) {
           setBusinesses(response.data.businesses);
@@ -148,7 +148,7 @@ useEffect(() => {
   //   if (selectedSection === "clients") {
   //     setLoadingBusinesses(true);
   //     axios
-  //       .get("http://localhost:5000/api/auth/client/businesses")
+  //       .get("${process.env.REACT_APP_BACKEND_URL}/api/auth/client/businesses")
   //       .then((response) => {
   //         if (response.data.success) {
   //           setBusinesses(response.data.businesses);
@@ -232,7 +232,7 @@ useEffect(() => {
           {property.images.map((img, i) => (
             <img
               key={img.fileId || i}
-              src={`http://localhost:5000/api/auth/imageProperty/${img.fileId}`}
+              src={`${process.env.REACT_APP_BACKEND_URL}/api/auth/imageProperty/${img.fileId}`}
               alt={`Property ${i + 1}`}
               style={imageStyle}
             />
@@ -290,7 +290,7 @@ useEffect(() => {
                 {business.businessPlan && (
                   <p>
                     <strong>Business Plan:</strong>{" "}
-                    <a href={`http://localhost:5000/${business.businessPlan}`} target="_blank" rel="noopener noreferrer">
+                    <a href={`${process.env.REACT_APP_BACKEND_URL}/${business.businessPlan}`} target="_blank" rel="noopener noreferrer">
                       View Document
                     </a>
                   </p>

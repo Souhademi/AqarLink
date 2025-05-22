@@ -26,7 +26,7 @@ const PropertyImages = ({ property }) => {
           </button>
 
           <img
-            src={`http://localhost:5000/api/auth/imageProperty/${images[currentImageIndex].fileId}`}
+            src={`${process.env.REACT_APP_BACKEND_URL}/api/auth/imageProperty/${images[currentImageIndex].fileId}`}
             alt={`property-${currentImageIndex}`}
             style={styles.image}
           />

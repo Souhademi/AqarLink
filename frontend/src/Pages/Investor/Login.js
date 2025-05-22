@@ -62,7 +62,7 @@ const InvestorLogin = () => {
   setLoading(true);
 
   try {
-    const response = await axios.post("http://localhost:5000/api/auth/investor/login", { email: email.trim(), password });
+    const response = await axios.post("${process.env.REACT_APP_BACKEND_URL}/api/auth/investor/login", { email: email.trim(), password });
 
     const { token, user } = response.data;
 
@@ -109,7 +109,7 @@ const InvestorLogin = () => {
   
   //   try {
   //     const response = await axios.post(
-  //       "http://localhost:5000/api/auth/investor/login",
+  //       "${process.env.REACT_APP_BACKEND_URL}/api/auth/investor/login",
   //       {
   //         email: email.trim(),
   //         password,

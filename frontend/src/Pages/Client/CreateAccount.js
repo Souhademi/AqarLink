@@ -80,7 +80,7 @@ if (!strongPasswordRegex.test(password)) {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/client/create-account",
+        "${process.env.REACT_APP_BACKEND_URL}api/auth/client/create-account",
         {
           firstName: firstName.trim(),
           lastName: lastName.trim(),

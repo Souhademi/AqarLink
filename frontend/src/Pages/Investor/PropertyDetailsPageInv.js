@@ -19,7 +19,7 @@ const PropertyDetailsPageInv = () => {
       const fetchPropertyDetails = async () => {
         try {
           
-          const res = await axios.get(`http://localhost:5000/api/auth/estateAgency/propertyDetails/${id}`);
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/propertyDetails/${id}`);
           setProperty(res.data.property);
         } catch (error) {
           console.error("Error fetching property details:", error);
@@ -31,7 +31,7 @@ const PropertyDetailsPageInv = () => {
     //       const clientId = localStorage.getItem('clientId');
     //       if (!clientId) return; // No client logged in
     
-    //       const res = await axios.get(`http://localhost:5000/api/auth/client/check-saved-property`, {
+    //       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/client/check-saved-property`, {
     //         params: { clientId, propertyId: id }
     //       });
     
@@ -69,12 +69,12 @@ const PropertyDetailsPageInv = () => {
 //     try {
 //       if (isSaved) {
 //         // Unsave
-//         await axios.post('http://localhost:5000/api/auth/client/unsave-property', { clientId, propertyId: id });
+//         await axios.post('${process.env.REACT_APP_BACKEND_URL}/api/auth/client/unsave-property', { clientId, propertyId: id });
 //         setIsSaved(false);
 //         console.log('Property unsaved!');
 //       } else {
 //         // Save
-//         await axios.post('http://localhost:5000/api/auth/client/save-property', { clientId, propertyId: id });
+//         await axios.post('${process.env.REACT_APP_BACKEND_URL}/api/auth/client/save-property', { clientId, propertyId: id });
 //         setIsSaved(true);
 //         console.log('Property saved!');
 //       }
@@ -105,7 +105,7 @@ const PropertyDetailsPageInv = () => {
         {property?.images?.length > 0 && (
   <div style={{ position: 'relative', width: '500px', height: '400px' }}>
     <img
-      src={`http://localhost:5000/api/auth/imageProperty/${property.images[currentImageIndex].fileId}`}
+      src={`${process.env.REACT_APP_BACKEND_URL}/api/auth/imageProperty/${property.images[currentImageIndex].fileId}`}
       alt="Property"
       style={{ width: '500px', height: '400px', borderRadius: '8px', objectFit: 'cover' }}
     />

@@ -9,7 +9,7 @@
 //   const handleForgot = async (e) => {
 //     e.preventDefault();
 //     try {
-//       const res = await axios.post('http://localhost:5000/api/auth/client/forgot-password', {
+//       const res = await axios.post('${process.env.REACT_APP_BACKEND_URL}/api/auth/client/forgot-password', {
 //         email,
 //       });
 //       setMessage(res.data.message);
@@ -51,7 +51,7 @@ const ForgotPasswordInvestor = () => {
   const handleForgot = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/investor/forgot-password', {
+      const res = await axios.post('${process.env.REACT_APP_BACKEND_URL}/api/auth/investor/forgot-password', {
         email,
       });
       setMessage(res.data.message);

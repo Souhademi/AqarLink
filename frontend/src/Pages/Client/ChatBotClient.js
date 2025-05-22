@@ -1,7 +1,7 @@
 // import React, { useEffect, useRef, useState } from "react";
 // import { io } from "socket.io-client";
 
-// const socket = io("http://localhost:5000");
+// const socket = io("${process.env.REACT_APP_BACKEND_URL}");
 // socket.emit("register", "client");
 
 // const ChatBotClient = () => {
@@ -57,7 +57,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:5000");
+const socket = io("${process.env.REACT_APP_BACKEND_URL}");
 socket.emit("register", "client"); // Register the client
 
 const ChatBotClient = () => {

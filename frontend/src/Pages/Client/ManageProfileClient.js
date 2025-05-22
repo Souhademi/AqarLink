@@ -17,7 +17,7 @@ const ProfileManagementClient = () => {
     }
 
     axios
-      .get(`http://localhost:5000/api/auth/clientManage/${clientId}`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/clientManage/${clientId}`)
       .then((res) => {
         // setClientData(res.data);
         setClientData(res.data.client); // ✅ FIXED
@@ -36,7 +36,7 @@ const ProfileManagementClient = () => {
 
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/auth/client/update/${clientId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/auth/client/update/${clientId}`,
         { [field]: inputValue }
       );
 

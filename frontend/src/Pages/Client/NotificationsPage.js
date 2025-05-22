@@ -15,7 +15,7 @@ const NotificationsPage = () => {
     const fetchNotifications = async () => {
       console.log("👀 Fetching notifications for clientId:", clientId);
       try {
-        const res = await fetch(`http://localhost:5000/api/auth/client/notifications/${clientId}`);
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/client/notifications/${clientId}`);
         const data = await res.json();
         if (data.success && Array.isArray(data.notifications)) {
           const sorted = data.notifications.sort(
@@ -43,7 +43,7 @@ const NotificationsPage = () => {
 
   const markAsRead = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/auth/client/notifications/${id}/read`, {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/client/notifications/${id}/read`, {
         method: 'PATCH',
       });
       const data = await res.json();
@@ -61,7 +61,7 @@ const NotificationsPage = () => {
 
   const deleteNotification = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/auth/client/notifications/${id}`, {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/client/notifications/${id}`, {
         method: 'DELETE',
       });
       const data = await res.json();

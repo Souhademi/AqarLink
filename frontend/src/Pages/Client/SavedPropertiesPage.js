@@ -21,7 +21,7 @@ const SavedPropertiesPage = () => {
           return;
         }
 
-        const res = await axios.get(`http://localhost:5000/api/auth/client/saved-properties/${clientId}`);
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/client/saved-properties/${clientId}`);
         setSavedProperties(res.data.savedProperties);
         setLoading(false);
       } catch (error) {
@@ -107,7 +107,7 @@ const SavedPropertiesPage = () => {
               <Link to={`/property/${property._id}`} style={{ textDecoration: 'none', color: 'inherit', display: 'contents' }}>
                 <div style={{ height: '300px', width: '300px' }}>
                   <img
-                    src={`http://localhost:5000/api/auth/imageProperty/${property.images[0]?.fileId}`}
+                    src={`${process.env.REACT_APP_BACKEND_URL}/api/auth/imageProperty/${property.images[0]?.fileId}`}
                     alt={property.location}
                     style={{
                       height: '300px',

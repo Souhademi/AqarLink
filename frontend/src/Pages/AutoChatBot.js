@@ -9,7 +9,10 @@ const AutoChatBot = () => {
   const [faqData, setFaqData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/faq")
+    // fetch("${process.env.REACT_APP_BACKEND_URL}api/faq")
+  fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/faq`)
+
+
       .then((res) => res.json())
       .then((data) => setFaqData(data));
   }, []);

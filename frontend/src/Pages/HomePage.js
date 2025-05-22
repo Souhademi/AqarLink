@@ -35,7 +35,7 @@ const [error, setError] = useState(null);
 useEffect(() => {
   const fetchProperties = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/auth/estateAgency/properties");
+      const res = await axios.get("${process.env.REACT_APP_BACKEND_URL}api/auth/estateAgency/properties");
       setProperties(res.data.properties);
     } catch (error) {
       console.error("❌ Error fetching properties:", error);
@@ -106,7 +106,7 @@ useEffect(() => {
             {property.images.map((img, i) => (
               <img
                 key={img.fileId || i}
-                src={`http://localhost:5000/api/auth/imageProperty/${img.fileId}`}
+                src={`${process.env.REACT_APP_BACKEND_URL}api/auth/imageProperty/${img.fileId}`}
                 alt={`Property ${i + 1}`}
                 style={imageStyle}
               />

@@ -21,7 +21,7 @@ const ChatBot = ({ sender = "client" }) => {
     const senderId = localStorage.getItem("clientId");
     if (!senderId) return;
 
-    socketRef.current = io("http://localhost:5000");
+    socketRef.current = io("${process.env.REACT_APP_BACKEND_URL}");
  socketRef.current.emit("register_user", {
   userId: senderId,
   role: "Client"
@@ -41,7 +41,7 @@ const ChatBot = ({ sender = "client" }) => {
     const senderId = localStorage.getItem("clientId");
     if (!senderId) return;
 
-    axios.get(`http://localhost:5000/api/messages/${senderId}`).then((res) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}api/messages/${senderId}`).then((res) => {
       const allMsgs = res.data.flatMap((m) => {
         const arr = [];
         if (m.question) {
@@ -87,7 +87,7 @@ const ChatBot = ({ sender = "client" }) => {
 
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/faq")
+    fetch("${process.env.REACT_APP_BACKEND_URL}api/faq")
       .then((res) => res.json())
       .then((data) => setFaqData(data));
   }, []);
@@ -333,13 +333,13 @@ const styles = {
 //     const senderId = localStorage.getItem("clientId");
 //     if (!senderId) return;
 
-//     // socketRef.current = io("http://localhost:5000");
+//     // socketRef.current = io("${process.env.REACT_APP_BACKEND_URL}");
 
 //     // socketRef.current.emit("register_user", {
 //     //   userId: senderId,
 //     //   role: "Client",
 //     // });
-// socketRef.current = io("http://localhost:5000");
+// socketRef.current = io("${process.env.REACT_APP_BACKEND_URL}");
 
 // socketRef.current.on("connect", () => {
 //   const senderId = localStorage.getItem("clientId");
@@ -371,7 +371,7 @@ const styles = {
 //     const senderId = localStorage.getItem("clientId");
 //     if (!senderId) return;
 
-//     axios.get(`http://localhost:5000/api/messages/${senderId}`).then((res) => {
+//     axios.get(`${process.env.REACT_APP_BACKEND_URL}api/messages/${senderId}`).then((res) => {
 //       const allMsgs = res.data.flatMap((m) => {
 //         const arr = [];
 //         if (m.question) {
@@ -408,7 +408,7 @@ const styles = {
 
 //   // Fetch FAQ data
 //   useEffect(() => {
-//     fetch("http://localhost:5000/api/faq")
+//     fetch("${process.env.REACT_APP_BACKEND_URL}api/faq")
 //       .then((res) => res.json())
 //       .then((data) => setFaqData(data));
 //   }, []);

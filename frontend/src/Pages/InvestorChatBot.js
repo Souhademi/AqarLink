@@ -25,7 +25,7 @@
 //   useEffect(() => {
 //     if (!senderId) return;
 
-//     const socket = io("http://localhost:5000");
+//     const socket = io("${process.env.REACT_APP_BACKEND_URL}");
 //     socketRef.current = socket;
 
 //     socket.emit("register_user", {
@@ -43,7 +43,7 @@
 //   // Load message history
 //   useEffect(() => {
 //     if (!senderId) return;
-//     axios.get(`http://localhost:5000/api/messages/${senderId}`).then((res) => {
+//     axios.get(`${process.env.REACT_APP_BACKEND_URL}api/messages/${senderId}`).then((res) => {
 //       const allMsgs = res.data.flatMap((m) => {
 //         const arr = [];
 //         if (m.question) {
@@ -387,7 +387,7 @@ const InvestorChatBot = ({ sender = "Investor" }) => {
   useEffect(() => {
     if (!senderId) return;
 
-    const socket = io("http://localhost:5000");
+    const socket = io("${process.env.REACT_APP_BACKEND_URL}");
     socketRef.current = socket;
 
     socket.emit("register_user", {
@@ -408,7 +408,7 @@ const InvestorChatBot = ({ sender = "Investor" }) => {
   // Load message history
   useEffect(() => {
     if (!senderId) return;
-    axios.get(`http://localhost:5000/api/messages/${senderId}`).then((res) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}api/messages/${senderId}`).then((res) => {
       const allMsgs = res.data.flatMap((m) => {
         const arr = [];
         if (m.question) {

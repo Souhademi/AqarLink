@@ -26,7 +26,7 @@ const ProfileManagementInvestor = () => {
     }
 
     axios
-        .get(`http://localhost:5000/api/auth/investorManage/${investorId}`)
+        .get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/investorManage/${investorId}`)
         .then((res) => {
             setInvestorData(res.data.investor);
         })
@@ -44,7 +44,7 @@ const ProfileManagementInvestor = () => {
 
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/auth/investor/update/${investorId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/auth/investor/update/${investorId}`,
         { [field]: inputValue }
       );
 
