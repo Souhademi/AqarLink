@@ -94,63 +94,115 @@ useEffect(() => {
   </div>
 ) : (
   <div className="properties-container">
-    {properties
-      .filter((property) =>
-        property.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        property.agencyName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        property.transactionType.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-      .map((property) => (
-        <div className="property-card" key={property._id}>
-          <div style={imageCarouselStyle}>
-            {property.images.map((img, i) => (
-              <img
-                key={img.fileId || i}
-                src={`${process.env.REACT_APP_BACKEND_URL}/api/auth/imageProperty/${img.fileId}`}
-                alt={`Property ${i + 1}`}
-                style={imageStyle}
-              />
-            ))}
-          </div>
-          <div
-            style={{
-              marginTop: "10px",
-              textAlign: "start",
-              fontSize: "16px",
-              alignItems: "end",
-            }}
-          >
-            <p>{property.agencyName} agency</p>
-            <p>Posted on: {new Date(property.updatedAt).toLocaleDateString()}</p>
-
-            {/* More Details Button */}
-            <button
-              style={{
-         
-                  backgroundColor: "grey",
-
-                height :"auto",
-                    color: "#fff",
-                    padding: "0.6rem 1.2rem",
-                    border: "none",
-                 
-                    fontWeight: "600",
-                    fontSize: "1rem",
-                    cursor: "pointer",
-              }}
-
-              onClick={() =>
-                // alert("You have to create an account to see more properties.")
-                alert("You have to create an account to see more details.")
-
-              }
-            >
-              More Details
-            </button>
-          </div>
+  {(Array.isArray(properties) ? properties : [])
+    .filter((property) =>
+      property.location?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      property.agencyName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      property.transactionType?.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .map((property) => (
+      <div className="property-card" key={property._id}>
+        <div style={imageCarouselStyle}>
+          {property.images?.map((img, i) => (
+            <img
+              key={img.fileId || i}
+              src={`${process.env.REACT_APP_BACKEND_URL}/api/auth/imageProperty/${img.fileId}`}
+              alt={`Property ${i + 1}`}
+              style={imageStyle}
+            />
+          ))}
         </div>
-      ))}
-  </div>
+        <div
+          style={{
+            marginTop: "10px",
+            textAlign: "start",
+            fontSize: "16px",
+            alignItems: "end",
+          }}
+        >
+          <p>{property.agencyName} agency</p>
+          <p>Posted on: {new Date(property.updatedAt).toLocaleDateString()}</p>
+
+          <button
+            style={{
+              backgroundColor: "grey",
+              height: "auto",
+              color: "#fff",
+              padding: "0.6rem 1.2rem",
+              border: "none",
+              fontWeight: "600",
+              fontSize: "1rem",
+              cursor: "pointer",
+            }}
+            onClick={() =>
+              alert("You have to create an account to see more details.")
+            }
+          >
+            More Details
+          </button>
+        </div>
+      </div>
+    ))}
+</div>
+
+  // <div className="properties-container">
+  //   {properties
+  //     .filter((property) =>
+  //       property.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  //       property.agencyName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  //       property.transactionType.toLowerCase().includes(searchQuery.toLowerCase())
+  //     )
+  //     .map((property) => (
+  //       <div className="property-card" key={property._id}>
+  //         <div style={imageCarouselStyle}>
+  //           {property.images.map((img, i) => (
+  //             <img
+  //               key={img.fileId || i}
+  //               src={`${process.env.REACT_APP_BACKEND_URL}/api/auth/imageProperty/${img.fileId}`}
+  //               alt={`Property ${i + 1}`}
+  //               style={imageStyle}
+  //             />
+  //           ))}
+  //         </div>
+  //         <div
+  //           style={{
+  //             marginTop: "10px",
+  //             textAlign: "start",
+  //             fontSize: "16px",
+  //             alignItems: "end",
+  //           }}
+  //         >
+  //           <p>{property.agencyName} agency</p>
+  //           <p>Posted on: {new Date(property.updatedAt).toLocaleDateString()}</p>
+
+   
+  //           <button
+  //             style={{
+         
+  //                 backgroundColor: "grey",
+
+  //               height :"auto",
+  //                   color: "#fff",
+  //                   padding: "0.6rem 1.2rem",
+  //                   border: "none",
+                 
+  //                   fontWeight: "600",
+  //                   fontSize: "1rem",
+  //                   cursor: "pointer",
+  //             }}
+
+  //             onClick={() =>
+  //               // alert("You have to create an account to see more properties.")
+  //               alert("You have to create an account to see more details.")
+
+  //             }
+  //           >
+  //             More Details
+  //           </button>
+  //         </div>
+  //       </div>
+  //     ))}
+  // </div>
 )}
 
   <div ref={footerRef}> {/* ✅ attach ref to Footer container */}
