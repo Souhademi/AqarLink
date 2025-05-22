@@ -108,11 +108,11 @@ useEffect(() => {
 ) : (
   <div className="properties-container">
   {(Array.isArray(properties) ? properties : [])
-    .filter((property) =>
-      property.location?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      property.agencyName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      property.transactionType?.toLowerCase().includes(searchQuery.toLowerCase())
-    )
+    // .filter((property) =>
+    //   property.location?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    //   property.agencyName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    //   property.transactionType?.toLowerCase().includes(searchQuery.toLowerCase())
+    // )
     .map((property) => (
       <div className="property-card" key={property._id}>
         <div style={imageCarouselStyle}>
