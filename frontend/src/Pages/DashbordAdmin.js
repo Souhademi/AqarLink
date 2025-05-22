@@ -24,7 +24,7 @@ const [replyText, setReplyText] = useState({});
 // 
 const fetchMessages = async () => {
     try {
-        const res = await axios.get("${process.env.REACT_APP_BACKEND_URL}api/messages/unanswered");
+        const res = await axios.get("${process.env.REACT_APP_BACKEND_URL}/api/messages/unanswered");
         setMessages(res.data);  // your backend just returns the array
     } catch (err) {
         console.error("Failed to fetch messages", err);
@@ -127,7 +127,7 @@ const handleShowMessages = () => setSelectedSection("messages");
 
 const handleReply = async (messageId) => {
   try {
-    await axios.post("${process.env.REACT_APP_BACKEND_URL}api/messages/reply", {
+    await axios.post("${process.env.REACT_APP_BACKEND_URL}/api/messages/reply", {
       messageId,
       reply: replyText[messageId],
     });
