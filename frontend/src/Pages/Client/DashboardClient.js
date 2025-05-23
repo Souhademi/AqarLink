@@ -98,7 +98,16 @@ const [tempPropertyType, setTempPropertyType] = useState("");
   const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/properties`);
   // setProperties(res.data.properties);
   console.log("📦 Properties fetch response:", res.data); // Debug
-setProperties(res.data?.properties || []);
+// setProperties(res.data?.properties || []);
+if (Array.isArray(res.data)) {
+  setProperties(res.data);
+} else if (Array.isArray(res.data.properties)) {
+  setProperties(res.data.properties);
+} else {
+  setProperties([]);
+  setError("Unexpected properties data format");
+}
+
 
   setError(""); // clear any previous error
 } catch (error) {
