@@ -95,7 +95,7 @@ const [tempPropertyType, setTempPropertyType] = useState("");
     const fetchProperties = async () => {
  
       try {
-  const res = await axios.get("${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/properties");
+  const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/properties`);
   setProperties(res.data.properties);
   setError(""); // clear any previous error
 } catch (error) {
@@ -123,7 +123,7 @@ const [tempPropertyType, setTempPropertyType] = useState("");
       }
 
       const response = await axios.post(
-        "${process.env.REACT_APP_BACKEND_URL}/api/auth/client/logout",
+        `${process.env.REACT_APP_BACKEND_URL}/api/auth/client/logout`,
         { clientId },
         {
           headers: {
