@@ -28,7 +28,7 @@ import AboutUs from "./Pages/AboutUs"
 import AdminLogin from "./Pages/AdminLogin"
 import DashboardAdmin from "./Pages/DashbordAdmin";
 import PrivateRouteAdmin from "./Pages/PrivateRouteAdmin";
-import AdminChat from "./Pages/AdminChat"
+
 import DashboardClient from "./Pages/Client/DashboardClient"
 import EmailVerification from "./Pages/Client/EmailVerification"
 import AddClientProperty from "./Pages/Client/AddClientProperty"
@@ -62,10 +62,7 @@ function App() {
 
 
         <Router>
-    {/* <div style={{ display: "flex", justifyContent: "space-around", padding: 40 }}>
-        <ChatBotClient />
-        <AdminChat />
-      </div> */}
+
         <Routes>
             <Route path = "/"element = {<HomePage/>}/> 
             <Route path = "/client/login"element = {<ClientLogin/>}/> 
