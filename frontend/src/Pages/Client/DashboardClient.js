@@ -96,7 +96,10 @@ const [tempPropertyType, setTempPropertyType] = useState("");
  
       try {
   const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/properties`);
-  setProperties(res.data.properties);
+  // setProperties(res.data.properties);
+  console.log("📦 Properties fetch response:", res.data); // Debug
+setProperties(res.data?.properties || []);
+
   setError(""); // clear any previous error
 } catch (error) {
   console.error("❌ Error fetching properties:", error);
