@@ -44,7 +44,7 @@ const handleSubmit = async (e) => {
   const totalAmount = planAmount + fixedFee;
 
   try {
-    const response = await axios.post("${process.env.REACT_APP_BACKEND_URL}/api/payment/agency-invoice", {
+    const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/payment/agency-invoice`, {
       email: formData.email,
       phoneNumber: formData.phoneNumber,
       subscriptionPlan: formData.subscriptionPlan,

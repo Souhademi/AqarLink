@@ -70,7 +70,7 @@ const [businessError, setBusinessError] = useState(false);
 
     try {
       await axios.post(
-        "${process.env.REACT_APP_BACKEND_URL}/api/auth/investor/logout",
+        `${process.env.REACT_APP_BACKEND_URL}/api/auth/investor/logout`,
         { investorId },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -111,7 +111,7 @@ useEffect(() => {
     setLoadingProperties(true);
     setPropertyError(false); // reset error state
     axios
-      .get("${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/properties")
+      .get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/properties`)
       .then((res) => setProperties(res.data.properties))
       .catch((error) => {
         console.error("❌ Error fetching properties:", error);
@@ -127,7 +127,7 @@ useEffect(() => {
     setLoadingBusinesses(true);
     setBusinessError(false); // reset error state
     axios
-      .get("${process.env.REACT_APP_BACKEND_URL}/api/auth/client/businesses")
+      .get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/client/businesses`)
       .then((response) => {
         if (response.data.success) {
           setBusinesses(response.data.businesses);

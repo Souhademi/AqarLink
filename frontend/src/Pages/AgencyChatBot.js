@@ -24,7 +24,7 @@ const AgencyChatBot = ({ sender = "AgencyAdmin" }) => {
     if (!senderId) return;
 
     // socketRef.current = io("${process.env.REACT_APP_BACKEND_URL}");
-    socketRef.current = io("${process.env.NEXT_PUBLIC_BACKEND_URL}");
+    socketRef.current = io(`${process.env.NEXT_PUBLIC_BACKEND_URL}`);
 
     socketRef.current.emit("register_user", {
       userId: senderId,
@@ -87,7 +87,7 @@ useEffect(() => {
 
 
   useEffect(() => {
-    fetch("${process.env.REACT_APP_BACKEND_URL}api/faq")
+    fetch(`${process.env.REACT_APP_BACKEND_URL}api/faq`)
       .then((res) => res.json())
       .then((data) => setFaqData(data));
   }, []);

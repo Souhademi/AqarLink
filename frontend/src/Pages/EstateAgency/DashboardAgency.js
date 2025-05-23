@@ -113,7 +113,7 @@ const DashboardAgency = () => {
     try {
       const url = editing
         ? `${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/property/${editing}`
-        : "${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/property";
+        : `${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/property`;
       const method = editing ? "PUT" : "POST";
 
       const res = await axios({
@@ -192,7 +192,7 @@ const DashboardAgency = () => {
 
     try {
       await axios.post(
-        "${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/logout",
+        `${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/logout`,
         { agencyAdminId },
         {
           headers: {

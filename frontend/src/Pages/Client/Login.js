@@ -54,7 +54,7 @@ const ClientLogin = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post("${process.env.REACT_APP_BACKEND_URL}/api/auth/client/login", {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/client/login`, {
         email: formData.email.trim(),
         password: formData.password,
       });
@@ -90,43 +90,6 @@ const ClientLogin = () => {
   };
 
 
-
-// const handleSubmit = async (e) => {
-//   e.preventDefault();
-//   setError(null);
-
-//   if (!formData.email || !formData.password) {
-//     setError("Please enter both email and password.");
-//     return;
-//   }
-
-//   setLoading(true);
-
-//   try {
-//     const response = await axios.post("${process.env.REACT_APP_BACKEND_URL}/api/auth/client/login", {
-//       email: formData.email.trim(),
-//       password: formData.password,
-//     });
-
-//     const { data } = response;
-
-//     if (data.success) {
-//       // ✅ Store token and client ID in localStorage
-//       localStorage.setItem("clientToken", data.token);
-//       localStorage.setItem("clientId", data.user.id);
-
-//       navigate("/client/dashboard", { replace: true });
-//     } else {
-//       setError(data.message || "Login failed.");
-//     }
-//   } catch (err) {
-//     const msg =
-//       err.response?.data?.message || err.response?.data?.error || "Login failed.";
-//     setError(msg);
-//   } finally {
-//     setLoading(false);
-//   }
-// };
 
 
   return (

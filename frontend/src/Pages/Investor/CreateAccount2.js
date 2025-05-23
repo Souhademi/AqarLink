@@ -46,7 +46,7 @@ const CreateInvestorAccount2 = () => {
         const totalAmount = planAmount + fixedFee;
 
         try {
-            const response = await axios.post("${process.env.REACT_APP_BACKEND_URL}/api/payment/investor-invoice", {
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/payment/investor-invoice`, {
                 email: formData.email,
                 phoneNumber: formData.phoneNumber,
                 subscriptionPlan: formData.subscriptionPlan,

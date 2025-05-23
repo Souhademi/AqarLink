@@ -149,18 +149,18 @@ useEffect(() => {
 const handleResend = async() => {
     try {
         // You could determine the user type dynamically (e.g., from a dropdown), but here we try both:
-        await axios.post("${process.env.REACT_APP_BACKEND_URL}/api/auth/client/resend-verification", { email });
+        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/client/resend-verification`, { email });
         setResendMessage("Client verification email resent successfully.");
     } catch (clientErr) {
         try {
-            await axios.post("${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/resend-verification", { email });
+            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/resend-verification`, { email });
             setResendMessage("Admin verification email resent successfully.");
         } catch (adminErr) {
 
 
             try {
                 // You could determine the user type dynamically (e.g., from a dropdown), but here we try both:
-                await axios.post("${process.env.REACT_APP_BACKEND_URL}/api/auth/investor/resend-verification", { email });
+                await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/investor/resend-verification`, { email });
                 setResendMessage("Investor verification email resent successfully.");
             } catch (investorErr) {
                 const errMsg = clientErr.response ?.data ?.error || investorErr.response ?.data ?.error|| adminErr.response ?.data ?.error;
