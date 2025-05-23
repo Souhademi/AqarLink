@@ -41,7 +41,7 @@ const ChatBot = ({ sender = "client" }) => {
     const senderId = localStorage.getItem("clientId");
     if (!senderId) return;
 
-    axios.get(`${process.env.REACT_APP_BACKEND_URL}api/messages/${senderId}`).then((res) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/messages/${senderId}`).then((res) => {
       const allMsgs = res.data.flatMap((m) => {
         const arr = [];
         if (m.question) {
@@ -87,7 +87,7 @@ const ChatBot = ({ sender = "client" }) => {
 
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}api/faq`
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/faq`
       )
       .then((res) => res.json())
       .then((data) => setFaqData(data));

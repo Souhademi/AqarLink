@@ -87,7 +87,7 @@ useEffect(() => {
 
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}api/faq`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/faq`)
       .then((res) => res.json())
       .then((data) => setFaqData(data));
   }, []);
