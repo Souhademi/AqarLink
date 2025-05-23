@@ -95,17 +95,6 @@ const [businessError, setBusinessError] = useState(false);
     backgroundColor: selectedSection === section ? "#6EC1D1" : "#1C2529",
   });
 
-  // useEffect(() => {
-  //   if (selectedSection === "agencies") {
-  //     setLoadingProperties(true);
-  //     axios
-  //       .get("${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/properties")
-  //       .then((res) => setProperties(res.data.properties))
-  //       .catch((error) => console.error("❌ Error fetching properties:", error))
-  //       .finally(() => setLoadingProperties(false));
-  //   }
-  // }, [selectedSection]);
-
 useEffect(() => {
   if (selectedSection === "agencies") {
     setLoadingProperties(true);
@@ -144,22 +133,7 @@ useEffect(() => {
   }
 }, [selectedSection]);
 
-  // useEffect(() => {
-  //   if (selectedSection === "clients") {
-  //     setLoadingBusinesses(true);
-  //     axios
-  //       .get("${process.env.REACT_APP_BACKEND_URL}/api/auth/client/businesses")
-  //       .then((response) => {
-  //         if (response.data.success) {
-  //           setBusinesses(response.data.businesses);
-  //         } else {
-  //           console.error("Error fetching businesses:", response.data.message);
-  //         }
-  //       })
-  //       .catch((err) => console.error("Error fetching businesses:", err))
-  //       .finally(() => setLoadingBusinesses(false));
-  //   }
-  // }, [selectedSection]);
+
 
 
 
