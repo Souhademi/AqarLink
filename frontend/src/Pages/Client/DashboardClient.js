@@ -149,16 +149,30 @@ setProperties(res.data?.properties || []);
   };
 
   // Filter properties based on selected transaction type, property type, and max price
-  const filteredProperties = properties.filter((property) => {
-    const matchesTransaction = selectedTransactionType
-      ? property.transactionType === selectedTransactionType
-      : true;
-    const matchesPropertyType = selectedPropertyType
-      ? property.propertyType === selectedPropertyType
-      : true;
-    const matchesMaxPrice = maxPrice ? property.price <= maxPrice : true; // Apply max price filter only when maxPrice is set
-    return matchesTransaction && matchesPropertyType && matchesMaxPrice;
-  });
+  // const filteredProperties = properties.filter((property) => {
+  //   const matchesTransaction = selectedTransactionType
+  //     ? property.transactionType === selectedTransactionType
+  //     : true;
+  //   const matchesPropertyType = selectedPropertyType
+  //     ? property.propertyType === selectedPropertyType
+  //     : true;
+  //   const matchesMaxPrice = maxPrice ? property.price <= maxPrice : true; // Apply max price filter only when maxPrice is set
+  //   return matchesTransaction && matchesPropertyType && matchesMaxPrice;
+  // });
+const filteredProperties = Array.isArray(properties)
+  ? properties.filter((property) => {
+      const matchesTransaction = selectedTransactionType
+        ? property.transactionType === selectedTransactionType
+        : true;
+      const matchesPropertyType = selectedPropertyType
+        ? property.propertyType === selectedPropertyType
+        : true;
+      const matchesMaxPrice = maxPrice ? property.price <= maxPrice : true;
+      return matchesTransaction && matchesPropertyType && matchesMaxPrice;
+    })
+  : [];
+
+
 const transactionTypes = ["Buy", "Rent", "Exchange",];
 const propertyTypes = ["Apartment", "Villa", "Land", "Garage"];
 
