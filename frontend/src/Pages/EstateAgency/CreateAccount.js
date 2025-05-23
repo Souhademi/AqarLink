@@ -99,7 +99,7 @@ if (!passwordStrengthRegex.test(password)) {
       formDataToSend.append("image", image);
     
       const response = await axios.post(
-        "${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/create-account",
+        `${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/create-account`,
         formDataToSend,
         {
           headers: {

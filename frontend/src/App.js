@@ -12,11 +12,10 @@ import EstateAgencyAdminLogin from "./Pages/EstateAgency/Login";
 
 import ClientLogin from "./Pages/Client/Login";
 import CreateClientAccount from "./Pages/Client/CreateAccount";
-// import PropertySearch from "./Pages/Client/PropertySearch";
-// import InvestorPropertyFilter from "./Pages/Investor/InvestorPropertyFilter";
+
 import BusinessInfo from "./Pages/Client/BusinessInfo";
 import SignIn from "./Pages/SignIn";
-// import Dashboard from "./Pages/Dashboard";
+
 import ProfileManagementClient from "./Pages/Client/ManageProfileClient";
 import ProfileManagementInvestor from "./Pages/Investor/ManageProfileInvestor";
 import ProfileManagementAgencyAdmin from "./Pages/EstateAgency/ManageProfileAgencyAdmin";
@@ -52,13 +51,11 @@ import PropertyDetailsPageInv from "./Pages/Investor/PropertyDetailsPageInv"
 import DashboardAgency from "./Pages/EstateAgency/DashboardAgency";
 import PrivateRouteInvestor from './Pages/Investor/PrivateRouteInvestor';
 import AgencyPrivateRoute from './Pages/EstateAgency/AgencyPrivateRoute';
+
+
+
 function App() {
     return ( 
-
-
-
-     
-
 
 
         <Router>

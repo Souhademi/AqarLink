@@ -21,7 +21,7 @@ const ChatBot = ({ sender = "client" }) => {
     const senderId = localStorage.getItem("clientId");
     if (!senderId) return;
 
-    socketRef.current = io("${process.env.REACT_APP_BACKEND_URL}");
+    socketRef.current = io(`${process.env.REACT_APP_BACKEND_URL}`);
  socketRef.current.emit("register_user", {
   userId: senderId,
   role: "Client"
@@ -87,7 +87,8 @@ const ChatBot = ({ sender = "client" }) => {
 
 
   useEffect(() => {
-    fetch("${process.env.REACT_APP_BACKEND_URL}api/faq")
+    fetch(`${process.env.REACT_APP_BACKEND_URL}api/faq`
+      )
       .then((res) => res.json())
       .then((data) => setFaqData(data));
   }, []);

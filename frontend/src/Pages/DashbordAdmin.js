@@ -1,11 +1,9 @@
 // export default DashboardAdmin;
 import React, { useState, useEffect } from "react";
-
-import ChatBot from "./ChatBot";
 import { FaUserCircle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
-import AdminConversations from "./AdminConversations";
+
 import ClipLoader from "react-spinners/ClipLoader"; // <-- make sure you import this
 
 const DashboardAdmin = () => {
@@ -24,7 +22,7 @@ const [replyText, setReplyText] = useState({});
 // 
 const fetchMessages = async () => {
     try {
-        const res = await axios.get("${process.env.REACT_APP_BACKEND_URL}/api/messages/unanswered");
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/messages/unanswered`);
         setMessages(res.data);  // your backend just returns the array
     } catch (err) {
         console.error("Failed to fetch messages", err);
@@ -38,7 +36,7 @@ const [clients, setClients] = useState([]);
 
   const handleLogout = async () => {
     try {
-      await axios.post("${process.env.REACT_APP_BACKEND_URL}/api/auth/admin/logout");
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/admin/logout`);
       localStorage.removeItem("adminLoggedIn");
       navigate("/adminLogin",{ replace: true });
       
@@ -127,7 +125,7 @@ const handleShowMessages = () => setSelectedSection("messages");
 
 const handleReply = async (messageId) => {
   try {
-    await axios.post("${process.env.REACT_APP_BACKEND_URL}/api/messages/reply", {
+    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/messages/reply`, {
       messageId,
       reply: replyText[messageId],
     });
@@ -148,7 +146,7 @@ const unansweredMessages = messages.filter(
 
   const fetchAgencies = async () => {
     try {
-      const res = await axios.get("${process.env.REACT_APP_BACKEND_URL}/api/auth/admin/all-agencies");
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/admin/all-agencies`);
       console.log("Fetched agencies:", res.data); // Check full structure
   
       if (res.data.success) {
@@ -166,7 +164,7 @@ const unansweredMessages = messages.filter(
 
   const fetchInvestors = async () => {
     try {
-      const res = await axios.get("${process.env.REACT_APP_BACKEND_URL}/api/auth/admin/all-investors");
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/admin/all-investors`);
       console.log("Fetched investors:", res.data); // Check full structure
   
       if (res.data.success) {
@@ -183,7 +181,7 @@ const unansweredMessages = messages.filter(
   
 const fetchClients = async () => {
   try {
-    const res = await axios.get("${process.env.REACT_APP_BACKEND_URL}/api/auth/admin/all-clients");
+    const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/admin/all-clients`);
     if (res.data.success) {
       setClients(res.data.clients);
     }
