@@ -24,7 +24,7 @@ const AgencyChatBot = ({ sender = "AgencyAdmin" }) => {
     if (!senderId) return;
 
     // socketRef.current = io("${process.env.REACT_APP_BACKEND_URL}");
-    socketRef.current = io(`${process.env.NEXT_PUBLIC_BACKEND_URL}`);
+    socketRef.current = io(`${process.env.REACT_APP_BACKEND_URL}`);
 
     socketRef.current.emit("register_user", {
       userId: senderId,
@@ -42,7 +42,7 @@ const AgencyChatBot = ({ sender = "AgencyAdmin" }) => {
     const senderId = localStorage.getItem("agencyId");
     if (!senderId) return;
 
-    axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/messages/${senderId}`).then((res) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/messages/${senderId}`).then((res) => {
       const allMsgs = res.data.flatMap((m) => {
         const arr = [];
         if (m.question) {
