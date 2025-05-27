@@ -29,14 +29,14 @@ const CreateClientAccount = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Reset messages
+
     setError(null);
     setSuccessMessage(null);
 
     const {
       firstName,
       lastName,
-    //   username,
+
       email,
   
       phone,
@@ -54,10 +54,7 @@ const CreateClientAccount = () => {
 
 
 
-    // if (password !== repeatPassword) {
-    //   setError("Passwords do not match.");
-    //   return;
-    // }
+
 
     if (password !== repeatPassword) {
   setError("Passwords do not match.");
@@ -84,7 +81,7 @@ if (!strongPasswordRegex.test(password)) {
         {
           firstName: firstName.trim(),
           lastName: lastName.trim(),
-        //   username: username.trim(),
+      
           email: email.trim(),
           phone: phone.trim(),
           password, // don't trim password
