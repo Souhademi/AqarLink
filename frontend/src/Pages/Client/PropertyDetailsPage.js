@@ -69,12 +69,12 @@ const PropertyDetailsPage = () => {
     try {
       if (isSaved) {
         // Unsave
-        await axios.post('${process.env.REACT_APP_BACKEND_URL}/api/auth/client/unsave-property', { clientId, propertyId: id });
+        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/client/unsave-property`, { clientId, propertyId: id });
         setIsSaved(false);
         console.log('Property unsaved!');
       } else {
         // Save
-        await axios.post('${process.env.REACT_APP_BACKEND_URL}/api/auth/client/save-property', { clientId, propertyId: id });
+        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/client/save-property`, { clientId, propertyId: id });
         setIsSaved(true);
         console.log('Property saved!');
       }
