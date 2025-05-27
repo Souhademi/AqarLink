@@ -25,7 +25,9 @@ const io = new Server(server, {
         // origin: "http://localhost:3000",
 
         // origin: process.env.FRONTEND_URL,
-        origin: [process.env.FRONTEND_URL, "http://localhost:3000"],
+        origin: [process.env.FRONTEND_URL, "http://localhost:3000", "https://aqar-link.vercel.app", // your production domain
+            "https://aqar-link-8wsab5szn-souha-malak-demikhas-projects.vercel.app" // vercel preview deploy
+        ],
 
         methods: ["GET", "POST"]
     }
