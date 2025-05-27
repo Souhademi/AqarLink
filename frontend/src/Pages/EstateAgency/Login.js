@@ -42,7 +42,7 @@ const AgencyLogin = () => {
     e.preventDefault();
     setError(null);
   
-    const { email, password } = formData;
+    const { email, password,rememberMe } = formData;
   
     if (!email || !password) {
       setError("Please enter both email and password.");
@@ -60,7 +60,7 @@ const AgencyLogin = () => {
         }
       );
   
-      const { token, user } = response.data;
+      const { token, user,rememberMe } = response.data;
   
       if (token && user?.id) {
       

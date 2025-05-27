@@ -39,15 +39,13 @@ const DashboardInvestor = () => {
   const [loadingProperties, setLoadingProperties] = useState(false);
   const [loadingBusinesses, setLoadingBusinesses] = useState(false);
   const navigate = useNavigate();
-const [propertyError, setPropertyError] = useState(false);
-const [businessError, setBusinessError] = useState(false);
+  const [propertyError, setPropertyError] = useState(false);
+  const [businessError, setBusinessError] = useState(false);
 
 
 
   const user = JSON.parse(localStorage.getItem("user") || sessionStorage.getItem("user"));
   const investorId = user?._id || user?.id;
-
-
 
 
   useEffect(() => {
@@ -60,6 +58,7 @@ const [businessError, setBusinessError] = useState(false);
   // Logout modal actions
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  
   const confirmLogout = () => {
     handleLogout();
     closeModal();
@@ -95,43 +94,43 @@ const [businessError, setBusinessError] = useState(false);
     backgroundColor: selectedSection === section ? "#6EC1D1" : "#1C2529",
   });
 
-useEffect(() => {
-  if (selectedSection === "agencies") {
-    setLoadingProperties(true);
-    setPropertyError(false); // reset error state
-    axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/properties`)
-      .then((res) => setProperties(res.data.properties))
-      .catch((error) => {
-        console.error("❌ Error fetching properties:", error);
-        setPropertyError(true); // show error message
-      })
-      .finally(() => setLoadingProperties(false));
-  }
-}, [selectedSection]);
+  useEffect(() => {
+    if (selectedSection === "agencies") {
+      setLoadingProperties(true);
+      setPropertyError(false); // reset error state
+      axios
+        .get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/estateAgency/properties`)
+        .then((res) => setProperties(res.data.properties))
+        .catch((error) => {
+          console.error("❌ Error fetching properties:", error);
+          setPropertyError(true); // show error message
+        })
+        .finally(() => setLoadingProperties(false));
+    }
+  }, [selectedSection]);
 
 
-useEffect(() => {
-  if (selectedSection === "clients") {
-    setLoadingBusinesses(true);
-    setBusinessError(false); // reset error state
-    axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/client/businesses`)
-      .then((response) => {
-        if (response.data.success) {
-          setBusinesses(response.data.businesses);
-        } else {
+  useEffect(() => {
+    if (selectedSection === "clients") {
+      setLoadingBusinesses(true);
+      setBusinessError(false); // reset error state
+      axios
+        .get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/client/businesses`)
+        .then((response) => {
+          if (response.data.success) {
+            setBusinesses(response.data.businesses);
+          } else {
+            setBusinessError(true);
+            console.error("Error fetching businesses:", response.data.message);
+          }
+        })
+        .catch((err) => {
+          console.error("Error fetching businesses:", err);
           setBusinessError(true);
-          console.error("Error fetching businesses:", response.data.message);
-        }
-      })
-      .catch((err) => {
-        console.error("Error fetching businesses:", err);
-        setBusinessError(true);
-      })
-      .finally(() => setLoadingBusinesses(false));
-  }
-}, [selectedSection]);
+        })
+        .finally(() => setLoadingBusinesses(false));
+    }
+  }, [selectedSection]);
 
 
 
@@ -275,49 +274,48 @@ useEffect(() => {
         ) : (
           // <p>No businesses found.</p>
           businessError ? (
-  <p style={{ textAlign: "center", color: "black",marginBottom:"50px" ,marginTop:"50px" }}>
-    Cannot retrieve offers at this time. Please try again later.
-  </p>
-) : (
-  <p>No businesses found.</p>
-)
+        <p style={{ textAlign: "center", color: "black",marginBottom:"50px" ,marginTop:"50px" }}>
+          Cannot retrieve offers at this time. Please try again later.
+        </p>
+      ) : (
+        <p>No businesses found.</p>
+      )
 
-        )}
-      </div>
-    )}
-  </>
-)}
+              )}
+            </div>
+          )}
+        </>
+      )}
 
             </div>   
             <Modal
-  isOpen={isModalOpen}
-  onRequestClose={closeModal}
-  contentLabel="Confirm Logout"
-  style={{
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-      padding: "30px",
-      borderRadius: "10px",
-      textAlign: "center"
-    }
-  }}
->
-  <p>Are you sure you want to logout?</p>
-  <div style={{ marginTop: "20px" }}>
-    <button onClick={confirmLogout} style={{ marginRight: "10px", padding: "10px 20px", backgroundColor: "#6EC1D1", color: "#fff", border: "none", borderRadius: "5px", height:"auto" }}>
-      Yes, Logout
-    </button>
-    <button onClick={closeModal} style={{ padding: "10px 20px", backgroundColor: "#ccc", border: "none", borderRadius: "5px", height:"auto" }}>
-      Cancel
-    </button>
-  </div>
-</Modal>
-
+            isOpen={isModalOpen}
+            onRequestClose={closeModal}
+            contentLabel="Confirm Logout"
+            style={{
+              content: {
+                top: "50%",
+                left: "50%",
+                right: "auto",
+                bottom: "auto",
+                marginRight: "-50%",
+                transform: "translate(-50%, -50%)",
+                padding: "30px",
+                borderRadius: "10px",
+                textAlign: "center"
+              }
+            }}
+          >
+            <p>Are you sure you want to logout?</p>
+            <div style={{ marginTop: "20px" }}>
+              <button onClick={confirmLogout} style={{ marginRight: "10px", padding: "10px 20px", backgroundColor: "#6EC1D1", color: "#fff", border: "none", borderRadius: "5px", height:"auto" }}>
+                Yes, Logout
+              </button>
+              <button onClick={closeModal} style={{ padding: "10px 20px", backgroundColor: "#ccc", border: "none", borderRadius: "5px", height:"auto" }}>
+                Cancel
+              </button>
+            </div>
+          </Modal>
          <InvestorChatBot/>
 
         </div>

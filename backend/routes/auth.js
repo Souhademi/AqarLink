@@ -8,8 +8,6 @@ const Investor = require("../models/Investor");
 const Notification = require("../models/Notification");
 const Message = require("../models/Message");
 
-// const { estateAgencyAdminDb } = require('../models/connections');
-// const Property = require('../models/Property')(estateAgencyAdminDb);
 
 
 const mongoose = require('mongoose');

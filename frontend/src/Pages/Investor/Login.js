@@ -73,11 +73,11 @@ const InvestorLogin = () => {
 
       if (rememberMe) {
         localStorage.setItem("investorToken", token);
-        localStorage.setItem("user", JSON.stringify(user));
+        // localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("investorId", userId); // Ensure investorId is stored here
       } else {
         sessionStorage.setItem("investorToken", token);
-        sessionStorage.setItem("user", JSON.stringify(user));
+        // sessionStorage.setItem("user", JSON.stringify(user));
         sessionStorage.setItem("investorId", userId); // Ensure investorId is stored here
       }
 

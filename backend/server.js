@@ -56,7 +56,8 @@ const clientDB = mongoose.createConnection(process.env.MONGO_ATLAS_URI_CLIENT, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     serverSelectionTimeoutMS: 200000,
-    bufferCommands: false
+    bufferCommands: false,
+    autoIndex: false, // <--- disable index auto-creation
 });
 
 const estateAgencyDB = mongoose.createConnection(process.env.MONGO_ATLAS_URI_AGENCY, {
