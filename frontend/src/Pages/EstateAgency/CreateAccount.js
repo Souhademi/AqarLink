@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Row2 from "../Row2"; // Import Row2 component
@@ -7,11 +7,11 @@ import axios from "axios";
 // import Footer from "../Footer";  
 
 const CreateEstateAgencyAdminAccount = () => {
-    // const footerRef = useRef(null); // <-- create footer ref
+    const footerRef = useRef(null); // <-- create footer ref
   
-    // const handleScrollToFooter = () => {
-    //   footerRef.current?.scrollIntoView({ behavior: 'smooth' });
-    // };
+    const handleScrollToFooter = () => {
+      footerRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
   
   const [formData, setFormData] = useState({
     agencyName: "",
@@ -310,9 +310,9 @@ return (
       <AutoChatBot />
     </div> 
 
-  {/* <div ref={footerRef}> 
+  <div ref={footerRef}> 
      <Footer/>
-        </div> */}
+        </div>
   </>
 );
 };

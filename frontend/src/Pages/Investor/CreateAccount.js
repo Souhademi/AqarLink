@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -8,11 +8,11 @@ import axios from "axios";
 // import Footer from "../Footer";  
 
 const CreateInvestorAccount = () => {
-  // const footerRef = useRef(null);
+  const footerRef = useRef(null);
 
-  // const handleScrollToFooter = () => {
-  //   footerRef.current?.scrollIntoView({ behavior: 'smooth' });
-  // };
+  const handleScrollToFooter = () => {
+    footerRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
  const [formData, setFormData] = useState({
  
@@ -264,11 +264,12 @@ if (!passwordRegex.test(password)) {
 
         <AutoChatBot/>
       </div>     
-{/*    
    <div ref={footerRef}>
         <Footer />
-      </div> */}
+      </div> 
     </>
+
+
   );
 };
 
