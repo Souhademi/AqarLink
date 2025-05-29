@@ -449,12 +449,36 @@ const handleRedirectToNotifications = () => {
           ))
           
           }
-          {filteredProperties.length === 0 && (
-        <p style={{textAlign: 'center',color: 'black',marginTop: '50px',marginBottom: '50px',fontSize: '18px',justifyContent: 'center',
+          {/* {filteredProperties.length === 0 && (
+        <p style={{align: 'center',color: 'black',marginTop: '50px',marginBottom: '50px',fontSize: '18px',justifyContent: 'center',
       alignItems: 'center',}}>
           No properties available for the selected filters.
         </p>
-      )}
+      )} */}
+      {filteredProperties.length === 0 && (
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+      marginTop: '50px',
+      marginBottom: '50px',
+    }}
+  >
+    <p
+      style={{
+        color: 'black',
+        fontSize: '18px',
+        textAlign: 'center',
+      }}
+    >
+      No properties available for the selected filters.
+    </p>
+  </div>
+)}
+
 
         </div>
       )}
