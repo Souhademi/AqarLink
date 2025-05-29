@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import Row2 from "../Row2"; // Import Row2 component
 import AutoChatBot from "../AutoChatBot";
 import axios from "axios";
+import Footer from "../Footer";  
+
 const CreateEstateAgencyAdminAccount = () => {
   const [formData, setFormData] = useState({
     agencyName: "",
