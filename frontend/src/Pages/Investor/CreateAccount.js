@@ -8,6 +8,11 @@ import axios from "axios";
 import Footer from "../Footer";  
 
 const CreateInvestorAccount = () => {
+  const footerRef = useRef(null); // <-- create footer ref
+
+  const handleScrollToFooter = () => {
+    footerRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
  const [formData, setFormData] = useState({
  

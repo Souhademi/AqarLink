@@ -7,6 +7,12 @@ import axios from "axios";
 import Footer from "../Footer";  
 
 const CreateEstateAgencyAdminAccount = () => {
+    const footerRef = useRef(null); // <-- create footer ref
+  
+    const handleScrollToFooter = () => {
+      footerRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
+  
   const [formData, setFormData] = useState({
     agencyName: "",
     firstName: "",
