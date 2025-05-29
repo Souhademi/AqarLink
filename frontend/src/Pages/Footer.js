@@ -8,7 +8,7 @@ const Footer = () => {
         <div style={styles.section}>
           <h3>Follow Us</h3>
           <div style={styles.socialLinks}>
-            <a href="https://facebook.com/Aqar Link" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="https://www.facebook.com/share/16JC5GjYJE/" target="_blank" rel="noopener noreferrer">Facebook</a>
             {/* <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a> */}
             <a href="https://www.instagram.com/aqar.link/" target="_blank" rel="noopener noreferrer">Instagram</a>
