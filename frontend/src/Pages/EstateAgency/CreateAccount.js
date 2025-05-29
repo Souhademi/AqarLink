@@ -299,10 +299,14 @@ return (
           </p>
         </div>
       </div>
-     <Footer/>
+    
 
       <AutoChatBot />
-    </div>
+    </div> 
+
+  <div ref={footerRef}> {/* ✅ attach ref to Footer container */}
+     <Footer/>
+        </div>
   </>
 );
 };

@@ -259,7 +259,10 @@ if (!passwordRegex.test(password)) {
 
         <AutoChatBot/>
       </div>     
-      <Footer/>
+   
+  <div ref={footerRef}> {/* ✅ attach ref to Footer container */}
+     <Footer/>
+        </div>
     </>
   );
 };
