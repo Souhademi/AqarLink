@@ -72,10 +72,10 @@ const DashboardClient = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-const [error, setError] = useState(""); // Add this with other useState declarations
+  const [error, setError] = useState(""); // Add this with other useState declarations
 
-const [tempTransactionType, setTempTransactionType] = useState("");
-const [tempPropertyType, setTempPropertyType] = useState("");
+  const [tempTransactionType, setTempTransactionType] = useState("");
+  const [tempPropertyType, setTempPropertyType] = useState("");
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -157,17 +157,19 @@ if (Array.isArray(res.data)) {
     }
   };
 
-  // Filter properties based on selected transaction type, property type, and max price
-  // const filteredProperties = properties.filter((property) => {
-  //   const matchesTransaction = selectedTransactionType
-  //     ? property.transactionType === selectedTransactionType
-  //     : true;
-  //   const matchesPropertyType = selectedPropertyType
-  //     ? property.propertyType === selectedPropertyType
-  //     : true;
-  //   const matchesMaxPrice = maxPrice ? property.price <= maxPrice : true; // Apply max price filter only when maxPrice is set
-  //   return matchesTransaction && matchesPropertyType && matchesMaxPrice;
-  // });
+// const filteredProperties = Array.isArray(properties)
+//   ? properties.filter((property) => {
+//       const matchesTransaction = selectedTransactionType
+//         ? property.transactionType === selectedTransactionType
+//         : true;
+//       const matchesPropertyType = selectedPropertyType
+//         ? property.propertyType === selectedPropertyType
+//         : true;
+//       const matchesMaxPrice = maxPrice ? property.price <= maxPrice : true;
+//       return matchesTransaction && matchesPropertyType && matchesMaxPrice;
+//     })
+//   : [];
+
 const filteredProperties = Array.isArray(properties)
   ? properties.filter((property) => {
       const matchesTransaction = selectedTransactionType
@@ -181,57 +183,13 @@ const filteredProperties = Array.isArray(properties)
     })
   : [];
 
-
 const transactionTypes = ["Buy", "Rent", "Exchange",];
 const propertyTypes = ["Apartment", "Villa", "Land", "Garage"];
 
   const [notifications, setNotifications] = useState([]);
   const [newNotification, setNewNotification] = useState(null); // for popup
   const alertedNotificationIds = useRef(new Set());
-  // const navigate = useNavigate();
-
-  // const fetchNotifications = async () => {
-  //   const clientId = localStorage.getItem("clientId");
-  //   const token = localStorage.getItem("clientToken");
-
-  //   if (!clientId || !token) {
-  //     console.warn("Client ID or token not found in localStorage.");
-  //     return;
-  //   }
-
-  //   try {
-  //     const response = await axios.get(
-  //       `${process.env.REACT_APP_BACKEND_URL}/api/auth/client/notifications/${clientId}`,
-  //       { headers: { Authorization: `Bearer ${token}` } }
-  //     );
-
-  //     const unseen = response.data.notifications.filter(n => !n.seen);
-  //     const newUnseen = unseen.filter(n => !alertedNotificationIds.current.has(n._id));
-
-  //     if (newUnseen.length > 0) {
-  //       const latest = newUnseen[0];
-  //       setNewNotification(latest); // show it in a popup
-  //       alertedNotificationIds.current.add(latest._id);
-
-  //       // Optionally mark it seen in backend
-  //       await axios.put(
-  //         `${process.env.REACT_APP_BACKEND_URL}/api/auth/client/notifications/${clientId}/mark-seen`,
-  //         { ids: [latest._id] },
-  //         { headers: { Authorization: `Bearer ${token}` } }
-  //       );
-  //     }
-
-  //     setNotifications(unseen);
-  //   } catch (err) {
-  //     console.error("Failed to fetch notifications", err);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const interval = setInterval(fetchNotifications, 10000);
-  //   fetchNotifications();
-  //   return () => clearInterval(interval);
-  // }, []);
+ 
 
 
 
@@ -299,20 +257,6 @@ const handleRedirectToNotifications = () => {
   dismissNotification(newNotification?._id);
 };
 
-  // const handleViewProperty = () => {
-  //   if (newNotification?.propertyId) {
-  //     navigate(`/property/${newNotification.propertyId}`);
-  //     setNewNotification(null);
-  //   }
-  // };
-
-  // const handleClosePopup = () => {
-  //   setNewNotification(null);
-  // };
-
-  // const handleRedirectToNotifications = () => {
-  //   navigate('/client/notifications');  // Replace '/notifications' with your actual notifications page route
-  // };
 
 
 
@@ -354,16 +298,69 @@ const handleRedirectToNotifications = () => {
               style={styles.slider}
             />
           </div>
-
-         
 <div style={styles.wrapper}>
-
-
   <div style={styles.container1}>
 
     {/* Transaction Type Dropdown */}
     <div style={styles.dropdownWrapper}>
-      {/* <label style={styles.label}>Transaction Type:</label> */}
+      <select
+        value={tempTransactionType}
+        onChange={(e) => setTempTransactionType(e.target.value)}
+        style={styles.select}
+      >
+        <option value="">All Transactions</option> {/* Unselect option */}
+        {transactionTypes.map((type) => (
+          <option key={type} value={type}>{type}</option>
+        ))}
+      </select>
+    </div>
+
+    {/* Property Type Dropdown */}
+    <div style={styles.dropdownWrapper}>
+      <select
+        value={tempPropertyType}
+        onChange={(e) => setTempPropertyType(e.target.value)}
+        style={styles.select}
+      >
+        <option value="">All Properties</option> {/* Unselect option */}
+        {propertyTypes.map((type) => (
+          <option key={type} value={type}>{type}</option>
+        ))}
+      </select>
+    </div>
+
+    {/* Search Button */}
+    <div style={styles.buttonWrapper}>
+      <button
+        style={styles.searchButton}
+        onClick={(e) => {
+          e.preventDefault();
+          setSelectedTransactionType(tempTransactionType);
+          setSelectedPropertyType(tempPropertyType);
+          console.log("Filtering by:", {
+            transaction: tempTransactionType,
+            property: tempPropertyType,
+            keyword: searchQuery,
+          });
+        }}
+      >
+        <FaSearch style={{ marginRight: "8px" }} />
+        Search
+      </button>
+    </div>
+
+  </div>
+</div>
+
+         
+{/* <div style={styles.wrapper}>
+
+
+  <div style={styles.container1}>
+
+
+    <div style={styles.dropdownWrapper}>
+
       <select
         value={tempTransactionType}
         onChange={(e) => setTempTransactionType(e.target.value)}
@@ -376,9 +373,9 @@ const handleRedirectToNotifications = () => {
       </select>
     </div>
 
-    {/* Property Type Dropdown */}
+
     <div style={styles.dropdownWrapper}>
-      {/* <label style={styles.label}>Property Type:</label> */}
+    
       <select
         value={tempPropertyType}
         onChange={(e) => setTempPropertyType(e.target.value)}
@@ -412,7 +409,7 @@ const handleRedirectToNotifications = () => {
 </div>
 
   </div>
-</div>
+</div> */}
 
 
 
@@ -449,7 +446,15 @@ const handleRedirectToNotifications = () => {
                 <p>Posted on: {new Date(property.updatedAt).toLocaleDateString()}</p>
               </div>
             </div>
-          ))}
+          ))
+          
+          }
+          {filteredProperties.length === 0 && (
+        <div style={{ marginTop: "20px", color: "red", textAlign: "center" }}>
+          No properties available for the selected filters.
+        </div>
+      )}
+
         </div>
       )}
 
