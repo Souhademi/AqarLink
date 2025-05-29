@@ -297,6 +297,7 @@ return (
           </p>
         </div>
       </div>
+     <Footer/>
 
       <AutoChatBot />
     </div>
