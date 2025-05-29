@@ -450,7 +450,7 @@ const handleRedirectToNotifications = () => {
           
           }
           {filteredProperties.length === 0 && (
-        <div style={{ marginTop: "20px", color: "red", textAlign: "center" }}>
+        <div style={{textAlign: 'center',color: 'black',marginTop: '50px',marginBottom: '50px',fontSize: '18px',}}>
           No properties available for the selected filters.
         </div>
       )}
