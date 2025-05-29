@@ -449,11 +449,29 @@ const handleRedirectToNotifications = () => {
           ))
           
           }
-          {filteredProperties.length === 0 && (
-        <p style={{textAlign: 'center',color: 'black',marginTop: '50px',marginBottom: '50px',fontSize: '18px',}}>
-          No properties available for the selected filters.
-        </p>
-      )}
+  {filteredProperties.length === 0 && (
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+    }}
+  >
+    <p
+      style={{
+        textAlign: 'center',
+        color: 'black',
+        marginTop: '50px',
+        marginBottom: '50px',
+        fontSize: '18px',
+      }}
+    >
+      No properties available for the selected filters.
+    </p>
+  </div>
+)}
+
 
         </div>
       )}
