@@ -255,10 +255,11 @@ if (!passwordRegex.test(password)) {
             </p>
           </div>
         </div>
-     <Footer/>
+
 
         <AutoChatBot/>
-      </div>
+      </div>     
+      <Footer/>
     </>
   );
 };
