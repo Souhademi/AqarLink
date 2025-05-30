@@ -474,7 +474,6 @@ const DashboardAgency = () => {
             </button>
 
             </form>
-          <AgencyChatBot/>
 
 
           <button
@@ -517,6 +516,8 @@ const DashboardAgency = () => {
 
      
       </div>
+          <AgencyChatBot/>
+
   <Footer/>
     </>
   );
