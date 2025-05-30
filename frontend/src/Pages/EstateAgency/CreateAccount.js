@@ -136,7 +136,8 @@ if (!passwordStrengthRegex.test(password)) {
 
 return (
   <>
-    <Row2 />
+    {/* <Row2 /> */}
+          <Row2 onContactClick={handleScrollToFooter} /> {/* ✅ pass handler to Row2 */}
 
     <h2 style={styles.title}>Create Agency Account</h2>
 

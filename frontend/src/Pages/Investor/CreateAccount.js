@@ -58,19 +58,7 @@ const CreateInvestorAccount = () => {
       image,
     } = formData;
   
-    // if (
 
-    //   !firstName ||
-    //   !lastName ||
-    //   !phone ||
-    //   !email ||
-    //   !password ||
-    //   !repeatPassword ||
-    //   !image
-    // ) {
-    //   setError("Please fill in all fields.");
-    //   return;
-    // }
     if (
   !firstName ||
   !lastName ||
@@ -144,7 +132,9 @@ if (!passwordRegex.test(password)) {
   }; 
   return (
     <>
-      <Row2 /> {/* Keep Row2 fixed */}
+      {/* <Row2 /> Keep Row2 fixed */}
+                <Row2 onContactClick={handleScrollToFooter} /> {/* ✅ pass handler to Row2 */}
+      
 
       <h2 style={styles.title}>Create Investor Account</h2>
       <div style={styles.container}>
@@ -223,9 +213,7 @@ if (!passwordRegex.test(password)) {
               </div>
             </div>
             <div style={styles.inputHalf}>
-            {/* <label htmlFor="investorProof">Investor Legal Proof <span style={{ color: "red" }}>*</span></label>
-
-        <input type="file" accept=".pdf,.jpg,.jpeg,.png"  onChange={handlePdfChange} style={styles.input} /> */}
+         
         <label htmlFor="investorProof">Investor Legal Proof (Optional)</label>
 <input type="file" accept=".pdf,.jpg,.jpeg,.png" onChange={handlePdfChange} style={styles.input} />
 
