@@ -387,9 +387,9 @@ const DashboardAgency = () => {
 
     </div>
 
-
-<h2 style={styles.title}>Property Management</h2>
 <div ref={formRef} style={styles.container}>
+<h2 style={styles.title}>Property Management</h2>
+
       <form onSubmit={handleSubmit} style={styles.form}>
         <div style={styles.row}>
           <select name="transactionType" value={formData.transactionType} onChange={handleChange} style={styles.input}>
