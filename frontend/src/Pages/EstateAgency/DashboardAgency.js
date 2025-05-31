@@ -164,20 +164,42 @@ const DashboardAgency = () => {
     }
   };
 
+  // const handleEdit = (property) => {
+  //   setEditing(property._id);
+  //   formRef.current?.scrollIntoView({ behavior: "smooth" });
+  //   setFormData({
+  //     description: property.description || "",
+  //     price: property.price || "",
+  //     transactionType: property.transactionType || "Buy",
+  //     propertyType: property.propertyType || "Apartment",
+  //     location: property.location || "",
+  //     space: property.space || "",
+  //     images: [],
+  //   });
+  //   window.scrollTo({ top: 0, behavior: "smooth" });
+  // };
+
+
   const handleEdit = (property) => {
-    setEditing(property._id);
-    formRef.current?.scrollIntoView({ behavior: "smooth" });
-    setFormData({
-      description: property.description || "",
-      price: property.price || "",
-      transactionType: property.transactionType || "Buy",
-      propertyType: property.propertyType || "Apartment",
-      location: property.location || "",
-      space: property.space || "",
-      images: [],
-    });
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  setEditing(property._id);
+  setFormData({
+    description: property.description || "",
+    price: property.price || "",
+    transactionType: property.transactionType || "Buy",
+    propertyType: property.propertyType || "Apartment",
+    location: property.location || "",
+    space: property.space || "",
+    images: [],
+  });
+
+  // Scroll to the form smoothly
+  setTimeout(() => {
+    if (formRef.current) {
+      formRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, 100); // Give a small delay to ensure the form renders properly
+};
+
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
