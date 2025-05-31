@@ -39,6 +39,10 @@ const AccountDropdown = ({ onLogout, openModal }) => {
 
 
 const DashboardAgency = () => {
+
+
+
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editing, setEditing] = useState(null);
   const [properties, setProperties] = useState([]);
@@ -179,12 +183,6 @@ const DashboardAgency = () => {
   //   window.scrollTo({ top: 0, behavior: "smooth" });
   // };
 
-useEffect(() => {
-  if (editing && formRef.current) {
-    // scroll once the form is visible
-    formRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-}, [editing]);
 
   const handleEdit = (property) => {
   setEditing(property._id);
@@ -198,14 +196,16 @@ useEffect(() => {
     images: [],
   });
 
-  // Scroll to the form smoothly
-  // setTimeout(() => {
-  //   if (formRef.current) {
-  //     formRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-  //   }
-  // }, 100); // Give a small delay to ensure the form renders properly
-};
 
+};
+  useEffect(() => {
+    if (editing && formRef.current && !isInViewport(formRef.current)) {
+      window.scrollTo({
+        top: formRef.current.offsetTop - 100, // Adjust for sticky header if needed
+        behavior: "smooth",
+      });
+    }
+  }, [editing]);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
