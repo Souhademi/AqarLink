@@ -11,6 +11,10 @@ module.exports = (connection) => {
             filename: String,
             fileId: mongoose.Schema.Types.ObjectId,
         }],
+        videos: [{
+            filename: String,
+            fileId: mongoose.Schema.Types.ObjectId,
+        }],
     }, { timestamps: true });
 
     return connection.model('Property', PropertySchema);
