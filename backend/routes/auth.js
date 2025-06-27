@@ -21,7 +21,7 @@ const multer = require('multer');
 // Set up Nodemailer transporter
 
 // const { upload, dbReady, uploadToGridFS, getBucket } = require('../middlewares/gridfsUpload');
-const { upload, dbReady, uploadToGridFS, getBucket } = require('../middlewares/gridUpload');
+const { upload, dbReady, uploadToGridFS, getBucket } = require('../middlewares/gridfsUpload');
 // assuming you renamed the file to gridUpload.js
 
 
