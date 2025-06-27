@@ -157,18 +157,6 @@ if (Array.isArray(res.data)) {
     }
   };
 
-// const filteredProperties = Array.isArray(properties)
-//   ? properties.filter((property) => {
-//       const matchesTransaction = selectedTransactionType
-//         ? property.transactionType === selectedTransactionType
-//         : true;
-//       const matchesPropertyType = selectedPropertyType
-//         ? property.propertyType === selectedPropertyType
-//         : true;
-//       const matchesMaxPrice = maxPrice ? property.price <= maxPrice : true;
-//       return matchesTransaction && matchesPropertyType && matchesMaxPrice;
-//     })
-//   : [];
 
 const filteredProperties = Array.isArray(properties)
   ? properties.filter((property) => {
@@ -352,65 +340,7 @@ const handleRedirectToNotifications = () => {
   </div>
 </div>
 
-         
-{/* <div style={styles.wrapper}>
-
-
-  <div style={styles.container1}>
-
-
-    <div style={styles.dropdownWrapper}>
-
-      <select
-        value={tempTransactionType}
-        onChange={(e) => setTempTransactionType(e.target.value)}
-        style={styles.select}
-      >
-        <option disabled value="">Transaction Type</option>
-        {transactionTypes.map((type) => (
-          <option key={type} value={type}>{type}</option>
-        ))}
-      </select>
-    </div>
-
-
-    <div style={styles.dropdownWrapper}>
-    
-      <select
-        value={tempPropertyType}
-        onChange={(e) => setTempPropertyType(e.target.value)}
-        style={styles.select}
-      >
-        <option disabled value="">Property Type</option>
-        {propertyTypes.map((type) => (
-          <option key={type} value={type}>{type}</option>
-        ))}
-      </select>
-    </div>
-
-   <div style={styles.buttonWrapper}>
-  <button
-    style={styles.searchButton}
-    onClick={(e) => {
-      e.preventDefault();
-      setSelectedTransactionType(tempTransactionType);
-      setSelectedPropertyType(tempPropertyType);
-      console.log("Filtering by:", {
-        transaction: tempTransactionType,
-        property: tempPropertyType,
-        keyword: searchQuery, // if using searchQuery too
-      });
-      // Call your filter function here
-    }}
-  >
-    <FaSearch style={{ marginRight: "8px" }} />
-    Search
-  </button>
-</div>
-
-  </div>
-</div> */}
-
+      
 
 
         </div>
@@ -427,7 +357,7 @@ const handleRedirectToNotifications = () => {
   </div>
 ) : (
   <div className="properties-container">
-    {filteredProperties.map((property) => (
+    {/* {filteredProperties.map((property) => (
             <div className="property-card" key={property._id} style={{ width: "372px", backgroundColor: "#fff", padding: "10px", borderRadius: "8px" }}>
               <Link to={`/property/${property._id}`} style={styles.link}>
                 <div style={imageCarouselStyle}>
@@ -446,9 +376,65 @@ const handleRedirectToNotifications = () => {
                 <p>Posted on: {new Date(property.updatedAt).toLocaleDateString()}</p>
               </div>
             </div>
+
+
+
           ))
           
-          }
+          } */}
+{filteredProperties.map((property) => (
+  <div
+    className="property-card"
+    key={property._id}
+    style={{
+      width: "372px",
+      backgroundColor: "#fff",
+      padding: "10px",
+      borderRadius: "8px",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "flex-start",
+      gap: "10px",
+    }}
+  >
+    <div style={{ flex: 1 }}>
+      <Link to={`/property/${property._id}`} style={styles.link}>
+        <div style={imageCarouselStyle}>
+          {property.images.map((img, i) => (
+            <img
+              key={img.fileId || i}
+              src={`${process.env.REACT_APP_BACKEND_URL}/api/auth/imageProperty/${img.fileId}`}
+              alt={`Property ${i + 1}`}
+              style={imageStyle}
+            />
+          ))}
+        </div>
+      </Link>
+      <div style={{ marginTop: "10px", textAlign: "start", fontSize: "16px" }}>
+        <p>{property.agencyName} agency</p>
+        <p>Posted on: {new Date(property.updatedAt).toLocaleDateString()}</p>
+      </div>
+    </div>
+
+    {/* 🎯 Virtual Reality Button */}
+    <div style={{ marginTop: "10px" }}>
+      <button
+        style={{
+          backgroundColor: "#007bff",
+          color: "#fff",
+          padding: "8px 12px",
+          borderRadius: "4px",
+          border: "none",
+          cursor: "pointer",
+          fontSize: "14px",
+        }}
+        onClick={() => window.location.href = `/property/${property._id}/vr`}
+      >
+        Virtual Reality
+      </button>
+    </div>
+  </div>
+))}
 
       {filteredProperties.length === 0 && (
   <div

@@ -20,7 +20,10 @@ const multer = require('multer');
 
 // Set up Nodemailer transporter
 
-const { upload, dbReady, uploadToGridFS, getBucket } = require('../middlewares/gridfsUpload');
+// const { upload, dbReady, uploadToGridFS, getBucket } = require('../middlewares/gridfsUpload');
+const { upload, dbReady, uploadToGridFS, getBucket } = require('../middlewares/gridUpload');
+// assuming you renamed the file to gridUpload.js
+
 
 
 const Grid = require('gridfs-stream');
@@ -201,6 +204,7 @@ dbReady.then(() => {
                 adminFirstName,
                 adminLastName,
                 agencyAddress,
+
 
                 email,
                 phone,
@@ -1742,99 +1746,7 @@ router.get('/client/saved-properties/:clientId', async(req, res) => {
     }
 });
 
-// // Account creation
-// dbReady.then(() => {
-//     router.post("/investor/create-account", upload.single("image"), async(req, res) => {
-//         try {
-//             const {
-//                 firstName,
-//                 lastName,
-//                 email,
-//                 phone,
-//                 password
-//             } = req.body;
 
-//             const image = req.file;
-
-//             // if (!firstName || !lastName || !email || !phone || !password || !image) {
-//             //     return res.status(400).json({ success: false, message: "All fields are required" });
-//             // }
-//             if (!firstName || !lastName || !email || !phone || !password) {
-//                 return res.status(400).json({ success: false, message: "All fields are required except legal proof" });
-//             }
-
-//             const existing = await Investor.findOne({ email: email.toLowerCase() });
-//             if (existing) {
-//                 return res.status(400).json({ success: false, message: "Email already exists" });
-//             }
-
-//             // const { fileId, filename } = await uploadToGridFS(image.buffer, image.originalname);
-
-//             let fileId = null;
-//             let filename = null;
-
-//             if (image) {
-//                 const uploaded = await uploadToGridFS(image.buffer, image.originalname);
-//                 fileId = uploaded.fileId;
-//                 filename = uploaded.filename;
-//             }
-// image: filename || null,
-// proofFileId: fileId || null,
-
-
-//             const saltRounds = Number(process.env.SALT) || 10;
-//             const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-//             const verificationToken = crypto.randomBytes(32).toString('hex');
-//             const verificationTokenExpires = new Date(Date.now() + 3600000);
-
-//             const newInvestor = new Investor({
-
-//                 firstName,
-//                 lastName,
-//                 email: email.toLowerCase(),
-//                 phone,
-//                 password, // 🔥 Just pass the raw password
-//                 image: filename,
-//                 proofFileId: fileId,
-//                 verifiedProof: false,
-
-//                 isVerified: false,
-//                 verificationToken,
-//                 verificationTokenExpires,
-
-//             });
-
-//             await newInvestor.save(); // 🔥 This triggers pre('save') and hashes password
-
-//             const verificationLink = `${process.env.FRONTEND_URL}/verify/${verificationToken}`;
-
-//             await transporter.sendMail({
-//                 to: newInvestor.email,
-//                 subject: "Verify your account",
-//                 html: `
-//             <p>Hello ${newInvestor.firstName},</p>
-//             <p>Please verify your email by clicking the link below:</p>
-//             <a href="${verificationLink}" target="_blank">${verificationLink}</a>
-//             <p>This link will expire in 1 hour.</p>
-//           `
-//             });
-
-//             return res.status(201).json({
-//                 success: true,
-//                 message: "Account created. Please check your email to verify your account."
-//             });
-
-//         } catch (error) {
-//             console.error("Account creation error:", error);
-//             return res.status(500).json({ success: false, message: "Server error" });
-//         }
-//     });
-// });
-
-
-// const strongPasswordRegex =
-//     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
 // Account creation
 dbReady.then(() => {
     router.post("/investor/create-account", upload.single("image"), async(req, res) => {
@@ -2059,37 +1971,6 @@ router.post('/investor/reset-password', async(req, res) => {
     }
 });
 
-// // Investor logout API
-// router.post('/investor/logout', async(req, res) => {
-//     const { investorId } = req.body;
-
-//     if (!investorId) {
-//         return res.status(400).json({ success: false, message: "Investor ID is required for logout." });
-//     }
-
-//     try {
-//         const investor = await Investor.findById(investorId);
-//         if (!investor) {
-//             return res.status(404).json({ success: false, message: "Investor not found." });
-//         }
-
-//         console.log(`Investor with ID ${investorId} logged out at ${new Date().toISOString()}`);
-
-//         // Optional: You can invalidate the token by blacklisting or other methods
-
-//         return res.status(200).json({
-//             success: true,
-//             message: "Logout successful",
-//             investor: {
-//                 id: investor._id,
-//                 email: investor.email
-//             }
-//         });
-//     } catch (error) {
-//         console.error("Logout error:", error);
-//         return res.status(500).json({ success: false, message: "Logout failed" });
-//     }
-// });
 router.post('/investor/logout', async(req, res) => {
     const { investorId } = req.body;
 
@@ -2215,26 +2096,6 @@ router.post('/investor/resend-verification', async(req, res) => {
 });
 
 
-
-// router.get("/file/:id", async(req, res) => {
-//     try {
-//         const conn = await mongoose.createConnection(process.env.MONGO_ATLAS_URI_INVESTOR, {
-//             useNewUrlParser: true,
-//             useUnifiedTopology: true,
-//         });
-
-//         const bucket = new GridFSBucket(conn.db, {
-//             bucketName: "uploads",
-//         });
-
-
-//         const fileId = new mongoose.Types.ObjectId(req.params.id);
-//         bucket.openDownloadStream(fileId).pipe(res);
-//     } catch (err) {
-//         console.error("File download error:", err);
-//         res.status(500).json({ message: "Could not retrieve file" });
-//     }
-// });
 
 
 

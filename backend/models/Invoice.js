@@ -9,6 +9,7 @@ const invoiceSchema = new mongoose.Schema({
     postLimit: { type: Number, required: true },
     status: { type: String, default: 'pending' },
     createdAt: { type: Date, default: Date.now },
+    invoiceToken: { type: String }, // NEW FIELD
 });
 
-module.exports = mongoose.model('Invoice', invoiceSchema);
+module.exports = mongoose.model("Invoice", invoiceSchema);
